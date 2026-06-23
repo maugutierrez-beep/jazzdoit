@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>jazzdoit — Get it done!</title>
+<meta name="description" content="The task app that keeps it simple. Organize your day, track what matters, and get things done. Free, runs anywhere.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Crect width='120' height='120' rx='28' fill='%2316243B'/%3E%3Cpath d='M38 60 L52 74' fill='none' stroke='%23E8794B' stroke-width='10' stroke-linecap='round'/%3E%3Cpath d='M52 74 L82 42' fill='none' stroke='%23fff' stroke-width='10' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#16243B;--orange:#E8794B;--white:#fff;--light:#F7F7F5;--ink:#1a1a18;--ink-2:#4a4a48;--ink-3:#8a8a84;--font-d:'Poppins',sans-serif;--font-b:'Inter',sans-serif}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-b);color:var(--ink);background:var(--white);overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:60px;padding:0 28px;display:flex;align-items:center;justify-content:space-between;background:rgba(22,36,59,.97);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.07)}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo{width:32px;height:32px;border:1.5px solid rgba(255,255,255,.2);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.nav-wm{font-family:var(--font-d);font-size:19px;font-weight:800;letter-spacing:-.5px;color:var(--white)}
+.nav-wm span{color:var(--orange)}
+.nav-right{display:flex;align-items:center;gap:10px}
+.nav-badge{background:rgba(232,121,75,.15);color:var(--orange);font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;border:1px solid rgba(232,121,75,.3)}
+.lang-toggle{display:flex;border:1px solid rgba(255,255,255,.15);border-radius:8px;overflow:hidden}
+.lang-btn{background:none;border:none;padding:5px 10px;font-size:12px;font-weight:600;color:rgba(255,255,255,.4);cursor:pointer;font-family:var(--font-b);transition:all .15s}
+.lang-btn.active{background:rgba(255,255,255,.12);color:var(--white)}
+.lang-btn:hover:not(.active){color:rgba(255,255,255,.7)}
+.nav-cta{background:var(--orange);color:var(--white);font-family:var(--font-d);font-weight:700;font-size:13px;padding:8px 18px;border-radius:10px;text-decoration:none;transition:opacity .15s;white-space:nowrap}
+.nav-cta:hover{opacity:.88}
+@media(max-width:520px){.nav-badge{display:none}}
+
+/* HERO */
+.hero{min-height:100vh;background:var(--navy);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 24px 72px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% -5%,rgba(232,121,75,.13),transparent 65%);pointer-events:none}
+.eyebrow{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.11);border-radius:20px;padding:5px 14px;font-size:12px;font-weight:500;color:rgba(255,255,255,.6);margin-bottom:24px;letter-spacing:.03em}
+.live-dot{width:6px;height:6px;border-radius:50%;background:#4ade80;animation:pulse 2s infinite;flex-shrink:0}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.hero h1{font-family:var(--font-d);font-size:clamp(42px,9vw,86px);font-weight:800;color:var(--white);line-height:1.02;letter-spacing:-2.5px}
+.hero h1 em{color:var(--orange);font-style:italic}
+.hero-sub{font-size:clamp(16px,2vw,19px);color:rgba(255,255,255,.52);max-width:460px;line-height:1.6;margin:16px auto 0}
+.check-wrap{margin:40px auto;width:88px;height:88px}
+.s1{stroke-dasharray:28;stroke-dashoffset:28;animation:draw .3s cubic-bezier(.4,0,.2,1) .35s forwards}
+.s2{stroke-dasharray:56;stroke-dashoffset:56;animation:draw .4s cubic-bezier(.4,0,.2,1) .62s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:8px}
+.btn-main{background:var(--orange);color:var(--white);font-family:var(--font-d);font-weight:700;font-size:16px;padding:14px 32px;border-radius:14px;text-decoration:none;box-shadow:0 4px 24px rgba(232,121,75,.38);transition:transform .12s,box-shadow .12s}
+.btn-main:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(232,121,75,.48)}
+.btn-sec{background:rgba(255,255,255,.08);color:rgba(255,255,255,.8);font-family:var(--font-d);font-weight:600;font-size:15px;padding:14px 24px;border-radius:14px;text-decoration:none;border:1px solid rgba(255,255,255,.14);transition:background .12s}
+.btn-sec:hover{background:rgba(255,255,255,.13)}
+.hero-note{margin-top:18px;font-size:12.5px;color:rgba(255,255,255,.27)}
+
+/* PLATFORMS */
+.platforms{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding:14px 24px;display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap}
+.plat{display:flex;align-items:center;gap:6px;font-size:12.5px;color:rgba(255,255,255,.38);font-weight:500}
+.plat svg{opacity:.5}
+
+/* FEATURES */
+.features{padding:88px 24px;background:var(--light)}
+.features-inner{max-width:860px;margin:0 auto;text-align:center}
+.sec-label{font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);margin-bottom:12px;display:block}
+.sec-title{font-family:var(--font-d);font-size:clamp(26px,4vw,38px);font-weight:800;letter-spacing:-1px;color:var(--ink);line-height:1.15;margin:0 auto;max-width:480px}
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-top:44px}
+.feat{background:var(--white);border-radius:14px;padding:26px;border:1px solid #e6e6e4;transition:box-shadow .15s,transform .15s;text-align:left}
+.feat:hover{box-shadow:0 10px 28px rgba(22,36,59,.08);transform:translateY(-2px)}
+.feat-ico{width:40px;height:40px;background:rgba(232,121,75,.1);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;color:var(--orange)}
+.feat h3{font-family:var(--font-d);font-size:15.5px;font-weight:700;color:var(--ink);margin-bottom:7px}
+.feat p{font-size:13.5px;color:var(--ink-2);line-height:1.6}
+
+/* BETA */
+.beta{background:var(--navy);padding:24px;text-align:center}
+.beta p{max-width:580px;margin:0 auto;font-size:13.5px;color:rgba(255,255,255,.45);line-height:1.6}
+.beta p strong{color:var(--orange)}
+.beta p a{color:rgba(255,255,255,.65);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.2)}
+.beta p a:hover{color:var(--white)}
+
+/* CTA FINAL */
+.cta-final{background:var(--navy);padding:96px 24px;text-align:center;position:relative;overflow:hidden}
+.cta-final::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 55% 70% at 50% 100%,rgba(232,121,75,.1),transparent 65%);pointer-events:none}
+.free-chip{display:inline-block;background:rgba(232,121,75,.14);color:var(--orange);font-size:12px;font-weight:600;padding:4px 12px;border-radius:20px;border:1px solid rgba(232,121,75,.28);margin-bottom:26px;letter-spacing:.04em}
+.cta-final h2{font-family:var(--font-d);font-size:clamp(28px,5vw,50px);font-weight:800;color:var(--white);letter-spacing:-1.5px;margin-bottom:14px;line-height:1.1}
+.cta-final h2 em{color:var(--orange);font-style:italic}
+.cta-final p{font-size:16px;color:rgba(255,255,255,.45);margin-bottom:36px}
+
+/* FOOTER */
+footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding:32px 24px;text-align:center}
+.footer-brand{font-family:var(--font-d);font-size:19px;font-weight:800;color:var(--white);letter-spacing:-.5px;margin-bottom:4px}
+.footer-brand span{color:var(--orange)}
+.footer-slogan{font-size:12.5px;color:rgba(255,255,255,.28);font-style:italic;margin-bottom:18px}
+.footer-meta{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:rgba(255,255,255,.28);flex-wrap:wrap;justify-content:center}
+.footer-meta a{color:rgba(255,255,255,.45);text-decoration:none;font-weight:500}
+.footer-meta a:hover{color:var(--white)}
+.footer-meta .sep{opacity:.3}
+.footer-copy{font-size:11.5px;color:rgba(255,255,255,.17);margin-top:14px}
+.flag-co{border-radius:2px;vertical-align:middle;display:inline-block}
+.globe-ico{vertical-align:middle;display:inline-block}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-brand">
+    <div class="nav-logo">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+        <path d="M5 12L9 16" stroke="#E8794B" stroke-width="2.8" stroke-linecap="round"/>
+        <path d="M9 16L19 7" stroke="#fff" stroke-width="2.8" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <span class="nav-wm">jazz<span>doit</span></span>
+  </a>
+  <div class="nav-right">
+    <span class="nav-badge">Beta</span>
+    <div class="lang-toggle">
+      <button class="lang-btn" id="btnEN" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" id="btnES" onclick="setLang('es')">ES</button>
+    </div>
+    <a href="https://app.jazzdoit.co/" class="nav-cta" target="_blank" id="nav-cta-text">Get started →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="eyebrow"><span class="live-dot"></span><span data-i18n="eyebrow">Live now · No download needed</span></div>
+  <h1 data-i18n-h="h1">Your tasks.<br><em>Actually done.</em></h1>
+  <p class="hero-sub" data-i18n="hero-sub">Organize your day, follow up on what matters, and get things done — from any device, right now.</p>
+
+  <div class="check-wrap">
+    <svg viewBox="0 0 88 88" fill="none">
+      <rect width="88" height="88" rx="22" fill="rgba(255,255,255,0.06)"/>
+      <path class="s1" d="M26 46L38 58" stroke="#E8794B" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+      <path class="s2" d="M38 58L63 31" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+
+  <div class="hero-actions">
+    <a href="https://app.jazzdoit.co/" class="btn-main" target="_blank" data-i18n="cta-main">Create free account →</a>
+    <a href="#features" class="btn-sec" data-i18n="cta-sec">See what it does</a>
+  </div>
+  <p class="hero-note" data-i18n="hero-note">No credit card · Works on browser, phone, and desktop</p>
+</section>
+
+<!-- PLATFORMS -->
+<div class="platforms">
+  <span class="plat"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg><span data-i18n="plat-browser">Browser</span></span>
+  <span class="plat"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="7" y="2" width="10" height="20" rx="2"/></svg><span data-i18n="plat-mobile">iPhone & Android</span></span>
+  <span class="plat"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M2 20h20"/></svg><span data-i18n="plat-desktop">Windows & Mac</span></span>
+  <span class="plat"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><span data-i18n="plat-install">Installs like a native app</span></span>
+</div>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="features-inner">
+    <span class="sec-label" data-i18n="feat-label">What jazzdoit does</span>
+    <h2 class="sec-title" data-i18n="feat-title">Everything you need.<br>Nothing you don't.</h2>
+    <div class="feat-grid">
+      <div class="feat">
+        <div class="feat-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <h3 data-i18n="f1-title">Your day at a glance</h3>
+        <p data-i18n="f1-desc">Today and tomorrow, side by side. Drag to reschedule, assign projects, and keep moving without friction.</p>
+      </div>
+      <div class="feat">
+        <div class="feat-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3 data-i18n="f2-title">Follow up in one tap</h3>
+        <p data-i18n="f2-desc">Assign tasks to your team. Generate a ready-to-send WhatsApp message with all pending items — no typing.</p>
+      </div>
+      <div class="feat">
+        <div class="feat-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+        <h3 data-i18n="f3-title">Daily email summary</h3>
+        <p data-i18n="f3-desc">Wake up to your day, already organized. jazzdoit sends your agenda every morning before you open the app.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BETA -->
+<div class="beta">
+  <p data-i18n-h="beta"><strong>🚧 In active development.</strong> jazzdoit is live and fully usable right now. New features ship regularly — <a href="https://app.jazzdoit.co/" target="_blank">join early</a> and help shape what comes next.</p>
+</div>
+
+<!-- CTA FINAL -->
+<section class="cta-final" id="cta">
+  <span class="free-chip" data-i18n="free-chip">✓ Currently free</span>
+  <h2 data-i18n-h="cta-h2">Ready to get<br><em>things done?</em></h2>
+  <p data-i18n="cta-p">Create your account and start today. No setup, no friction.</p>
+  <a href="https://app.jazzdoit.co/" class="btn-main" target="_blank" data-i18n="cta-main">Create free account →</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-brand">jazz<span>doit</span></p>
+  <p class="footer-slogan">Get it done!</p>
+  <div class="footer-meta">
+    <span data-i18n="footer-by">A product by</span>
+    <a href="https://www.gvccapital.co" target="_blank" rel="noopener">GVC Capital</a>
+    <span class="sep">·</span>
+    <svg class="flag-co" width="16" height="11" viewBox="0 0 24 16"><rect width="24" height="8" fill="#FCD116"/><rect y="8" width="24" height="4" fill="#003893"/><rect y="12" width="24" height="4" fill="#CE1126"/></svg>
+    <span>→</span>
+    <svg class="globe-ico" viewBox="0 0 32 32" width="14" height="14"><circle cx="16" cy="16" r="15" fill="#2E7CB8"/><path d="M9 7c2 1 1 3 3 4s3-1 4 1-2 3 0 5 4 0 4 2-3 2-2 4-3 1-5 0-2-3-4-3-3 2-4 0 1-3-1-5-3 0-3-2 2-1 3-3 1-3 3-3 2 2 4 3z" fill="#3FA45F" opacity=".9"/></svg>
+  </div>
+  <p class="footer-copy">© 2026 jazzdoit · jazzdoit.co</p>
+</footer>
+
+<script>
+const COPY = {
+  en: {
+    'eyebrow':      'Live now · No download needed',
+    'h1':           'Your tasks.<br><em>Actually done.</em>',
+    'hero-sub':     'Organize your day, follow up on what matters, and get things done — from any device, right now.',
+    'cta-main':     'Create free account →',
+    'cta-sec':      'See what it does',
+    'hero-note':    'No credit card · Works on browser, phone, and desktop',
+    'plat-browser': 'Browser',
+    'plat-mobile':  'iPhone & Android',
+    'plat-desktop': 'Windows & Mac',
+    'plat-install': 'Installs like a native app',
+    'feat-label':   'What jazzdoit does',
+    'feat-title':   'Everything you need.<br>Nothing you don\'t.',
+    'f1-title':     'Your day at a glance',
+    'f1-desc':      'Today and tomorrow, side by side. Drag to reschedule, assign projects, and keep moving without friction.',
+    'f2-title':     'Follow up in one tap',
+    'f2-desc':      'Assign tasks to your team. Generate a ready-to-send WhatsApp message with all pending items — no typing.',
+    'f3-title':     'Daily email summary',
+    'f3-desc':      'Wake up to your day, already organized. jazzdoit sends your agenda every morning before you open the app.',
+    'beta':         '<strong>🚧 In active development.</strong> jazzdoit is live and fully usable right now. New features ship regularly — <a href="https://app.jazzdoit.co/" target="_blank">join early</a> and help shape what comes next.',
+    'free-chip':    '✓ Currently free',
+    'cta-h2':       'Ready to get<br><em>things done?</em>',
+    'cta-p':        'Create your account and start today. No setup, no friction.',
+    'footer-by':    'A product by',
+    'nav-cta':      'Get started →',
+    'title':        'jazzdoit — Get it done!',
+    'html-lang':    'en',
+  },
+  es: {
+    'eyebrow':      'En vivo · Sin descargas',
+    'h1':           'Tus tareas.<br><em>Realmente hechas.</em>',
+    'hero-sub':     'Organiza tu día, dale seguimiento a lo que importa y haz que las cosas pasen — desde cualquier dispositivo, ahora mismo.',
+    'cta-main':     'Crear cuenta gratis →',
+    'cta-sec':      'Ver cómo funciona',
+    'hero-note':    'Sin tarjeta de crédito · Funciona en navegador, celular y escritorio',
+    'plat-browser': 'Navegador',
+    'plat-mobile':  'iPhone y Android',
+    'plat-desktop': 'Windows y Mac',
+    'plat-install': 'Se instala como app nativa',
+    'feat-label':   'Qué hace jazzdoit',
+    'feat-title':   'Todo lo que necesitas.<br>Nada más.',
+    'f1-title':     'Tu día de un vistazo',
+    'f1-desc':      'Hoy y mañana, lado a lado. Arrastra para reprogramar, asigna proyectos y sigue avanzando sin fricciones.',
+    'f2-title':     'Seguimiento en un toque',
+    'f2-desc':      'Asigna tareas a tu equipo. Genera un mensaje de WhatsApp listo para enviar con todos los pendientes — sin escribir nada.',
+    'f3-title':     'Resumen diario por correo',
+    'f3-desc':      'Despiértate con tu día ya organizado. jazzdoit te envía tu agenda cada mañana antes de que abras la app.',
+    'beta':         '<strong>🚧 En desarrollo activo.</strong> jazzdoit está en vivo y es completamente funcional ahora mismo. Nuevas funciones llegan regularmente — <a href="https://app.jazzdoit.co/" target="_blank">únete temprano</a> y ayuda a construirla.',
+    'free-chip':    '✓ Gratis por ahora',
+    'cta-h2':       '¿Listo para hacer<br><em>que las cosas pasen?</em>',
+    'cta-p':        'Crea tu cuenta y empieza hoy. Sin configuraciones, sin complicaciones.',
+    'footer-by':    'Un producto de',
+    'nav-cta':      'Comenzar →',
+    'title':        'jazzdoit — ¡Get it done!',
+    'html-lang':    'es',
+  }
+};
+
+let LANG = 'en';
+
+function detectLang(){
+  const nav = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+  return nav.startsWith('es') ? 'es' : 'en';
+}
+
+function setLang(l){
+  LANG = l;
+  try{ localStorage.setItem('jd_landing_lang', l) }catch(e){}
+
+  const c = COPY[l];
+  document.documentElement.lang = c['html-lang'];
+  document.title = c['title'];
+
+  // data-i18n: textContent
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k = el.getAttribute('data-i18n');
+    if(c[k] !== undefined) el.textContent = c[k];
+  });
+
+  // data-i18n-h: innerHTML (for bold/italic/links)
+  document.querySelectorAll('[data-i18n-h]').forEach(el=>{
+    const k = el.getAttribute('data-i18n-h');
+    if(c[k] !== undefined) el.innerHTML = c[k];
+  });
+
+  // nav CTA
+  document.getElementById('nav-cta-text').textContent = c['nav-cta'];
+
+  // lang buttons
+  document.getElementById('btnEN').classList.toggle('active', l==='en');
+  document.getElementById('btnES').classList.toggle('active', l==='es');
+}
+
+// Init
+try{ LANG = localStorage.getItem('jd_landing_lang') || detectLang(); }catch(e){ LANG = detectLang(); }
+setLang(LANG);
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}
+  });
+});
+</script>
+</body>
+</html>
