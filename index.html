@@ -10,12 +10,25 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--navy:#16243B;--navy2:#1e2f4a;--orange:#E8794B;--white:#fff;--light:#F7F7F5;--ink:#1a1a18;--ink-2:#4a4a48;--ink-3:#8a8a84;--font-d:'Poppins',sans-serif;--font-b:'Inter',sans-serif}
+:root{
+  --navy:#16243B;--navy2:#1b2d45;--navy3:#213550;
+  --orange:#E8794B;--orange2:#f08a60;
+  --white:#fff;--light:#F4F4F2;--ink:#181816;--ink-2:#46463f;--ink-3:#88887f;
+  --font-d:'Poppins',sans-serif;--font-b:'Inter',sans-serif;
+  --r:14px;
+}
 html{scroll-behavior:smooth}
 body{font-family:var(--font-b);color:var(--ink);background:var(--white);overflow-x:hidden}
 
+/* FADE IN ANIMATIONS */
+.fade-up{opacity:0;transform:translateY(24px);transition:opacity .55s ease,transform .55s ease}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+.fade-up.delay-1{transition-delay:.1s}
+.fade-up.delay-2{transition-delay:.2s}
+.fade-up.delay-3{transition-delay:.3s}
+
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;height:58px;padding:0 28px;display:flex;align-items:center;justify-content:space-between;background:rgba(22,36,59,.97);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.07)}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:58px;padding:0 28px;display:flex;align-items:center;justify-content:space-between;background:rgba(22,36,59,.97);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.07)}
 .nav-brand{display:flex;align-items:center;gap:9px;text-decoration:none}
 .nav-logo{width:30px;height:30px;border:1.5px solid rgba(255,255,255,.2);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .nav-wm{font-family:var(--font-d);font-size:18px;font-weight:800;letter-spacing:-.5px;color:var(--white)}
@@ -24,148 +37,161 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;height:58px;padding:0 28px;d
 .nav-badge{background:rgba(232,121,75,.15);color:var(--orange);font-size:11px;font-weight:600;padding:3px 9px;border-radius:20px;border:1px solid rgba(232,121,75,.3)}
 .lang-toggle{display:flex;border:1px solid rgba(255,255,255,.14);border-radius:7px;overflow:hidden}
 .lang-btn{background:none;border:none;padding:4px 9px;font-size:11.5px;font-weight:600;color:rgba(255,255,255,.38);cursor:pointer;font-family:var(--font-b);transition:all .15s}
-.lang-btn.active{background:rgba(255,255,255,.11);color:var(--white)}
-.nav-cta{background:var(--orange);color:var(--white);font-family:var(--font-d);font-weight:700;font-size:13px;padding:7px 16px;border-radius:9px;text-decoration:none;transition:opacity .15s;white-space:nowrap}
+.lang-btn.active{background:rgba(255,255,255,.12);color:var(--white)}
+.nav-cta{background:var(--orange);color:var(--white);font-family:var(--font-d);font-weight:700;font-size:13px;padding:8px 18px;border-radius:9px;text-decoration:none;transition:opacity .15s;white-space:nowrap}
 .nav-cta:hover{opacity:.88}
 @media(max-width:500px){.nav-badge{display:none}}
 
-/* HERO — 2 columnas */
-.hero{min-height:100vh;background:var(--navy);display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:center;padding:58px 0 0;overflow:hidden}
-@media(max-width:840px){.hero{grid-template-columns:1fr;min-height:auto;padding-top:58px}}
-.hero-left{padding:56px 48px 56px 7%;display:flex;flex-direction:column;align-items:flex-start;position:relative;z-index:1}
-@media(max-width:840px){.hero-left{padding:48px 24px 32px;align-items:center;text-align:center}}
-.hero::before{content:'';position:absolute;top:0;left:0;right:50%;bottom:0;background:radial-gradient(ellipse 120% 80% at 20% 30%,rgba(232,121,75,.11),transparent 65%);pointer-events:none}
-.eyebrow{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.11);border-radius:20px;padding:5px 13px;font-size:11.5px;font-weight:500;color:rgba(255,255,255,.6);margin-bottom:18px;letter-spacing:.03em}
-.live-dot{width:5px;height:5px;border-radius:50%;background:#4ade80;animation:pulse 2s infinite;flex-shrink:0}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-.hero h1{font-family:var(--font-d);font-size:clamp(36px,4.5vw,58px);font-weight:800;color:var(--white);line-height:1.04;letter-spacing:-2px;margin-bottom:14px}
-.hero h1 em{color:var(--orange);font-style:italic}
-.hero-sub{font-size:clamp(14px,1.5vw,16.5px);color:rgba(255,255,255,.52);max-width:420px;line-height:1.65;margin-bottom:28px}
-.hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px}
-.btn-main{background:var(--orange);color:var(--white);font-family:var(--font-d);font-weight:700;font-size:15px;padding:13px 28px;border-radius:12px;text-decoration:none;box-shadow:0 4px 20px rgba(232,121,75,.38);transition:transform .12s,box-shadow .12s}
-.btn-main:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(232,121,75,.48)}
-.btn-sec{background:rgba(255,255,255,.08);color:rgba(255,255,255,.78);font-family:var(--font-d);font-weight:600;font-size:14px;padding:13px 22px;border-radius:12px;text-decoration:none;border:1px solid rgba(255,255,255,.14);transition:background .12s}
-.btn-sec:hover{background:rgba(255,255,255,.13)}
-.trust-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
-.trust-item{display:flex;align-items:center;gap:6px;font-size:12px;color:rgba(255,255,255,.38)}
-.trust-item svg{opacity:.5;flex-shrink:0}
-.trust-sep{color:rgba(255,255,255,.15);font-size:10px}
+/* HERO */
+.hero{background:var(--navy);padding:58px 0 0;min-height:100vh;display:flex;flex-direction:column}
+.hero-inner{flex:1;display:grid;grid-template-columns:1fr 1fr;max-width:1200px;margin:0 auto;width:100%;padding:52px 48px 40px;gap:40px;align-items:center}
+@media(max-width:860px){.hero-inner{grid-template-columns:1fr;padding:40px 24px 32px;text-align:center}}
+.hero-left{display:flex;flex-direction:column;align-items:flex-start;gap:0}
+@media(max-width:860px){.hero-left{align-items:center}}
+.eyebrow{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.11);border-radius:20px;padding:5px 14px;font-size:11.5px;font-weight:500;color:rgba(255,255,255,.6);margin-bottom:20px}
+.live-dot{width:5px;height:5px;border-radius:50%;background:#4ade80;animation:blink 2s infinite;flex-shrink:0}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+.hero h1{font-family:var(--font-d);font-size:clamp(38px,4.8vw,62px);font-weight:800;color:var(--white);line-height:1.03;letter-spacing:-2.5px;margin-bottom:16px}
+.hero h1 em{color:var(--orange);font-style:italic;display:block}
+.hero-sub{font-size:clamp(15px,1.5vw,17px);color:rgba(255,255,255,.5);max-width:400px;line-height:1.65;margin-bottom:28px}
+@media(max-width:860px){.hero-sub{max-width:100%}}
+.hero-btns{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px}
+.btn-main{background:var(--orange);color:var(--white);font-family:var(--font-d);font-weight:700;font-size:15.5px;padding:13px 30px;border-radius:12px;text-decoration:none;box-shadow:0 4px 20px rgba(232,121,75,.35);transition:transform .12s,box-shadow .12s,opacity .12s}
+.btn-main:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(232,121,75,.45)}
+.btn-sec{background:rgba(255,255,255,.07);color:rgba(255,255,255,.75);font-family:var(--font-d);font-weight:600;font-size:14.5px;padding:13px 22px;border-radius:12px;text-decoration:none;border:1px solid rgba(255,255,255,.13);transition:background .12s}
+.btn-sec:hover{background:rgba(255,255,255,.12)}
+.trust-row{display:flex;flex-wrap:wrap;gap:16px}
+.trust-item{display:flex;align-items:center;gap:5px;font-size:12px;color:rgba(255,255,255,.35)}
+.trust-item svg{flex-shrink:0;opacity:.6}
 
-/* HERO RIGHT — app mockup */
-.hero-right{height:100vh;display:flex;align-items:center;justify-content:center;padding:58px 5% 20px 0;position:relative}
-@media(max-width:840px){.hero-right{height:auto;padding:0 16px 48px;justify-content:center}}
-.app-mockup{width:100%;max-width:460px;background:var(--navy2);border-radius:16px;border:1px solid rgba(255,255,255,.1);overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.06);transform:perspective(1000px) rotateY(-4deg) rotateX(2deg);transition:transform .3s}
-.app-mockup:hover{transform:perspective(1000px) rotateY(-1deg) rotateX(1deg)}
-@media(max-width:840px){.app-mockup{transform:none}}
-.mock-topbar{background:#16243B;padding:8px 14px;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(255,255,255,.07)}
-.mock-dots{display:flex;gap:5px}
-.mock-dot{width:9px;height:9px;border-radius:50%}
-.mock-url{flex:1;background:rgba(255,255,255,.06);border-radius:5px;padding:4px 10px;font-size:10px;color:rgba(255,255,255,.3);text-align:center;font-family:monospace}
-.mock-body{display:grid;grid-template-columns:140px 1fr;min-height:380px}
-@media(max-width:500px){.mock-body{grid-template-columns:110px 1fr;min-height:300px}}
-.mock-sidebar{background:#12202f;padding:12px 8px;border-right:1px solid rgba(255,255,255,.06);display:flex;flex-direction:column;gap:4px}
-.mock-brand{display:flex;align-items:center;gap:6px;padding:4px 6px 10px;border-bottom:1px solid rgba(255,255,255,.06);margin-bottom:4px}
-.mock-logo{width:20px;height:20px;background:#16243B;border:1px solid rgba(255,255,255,.15);border-radius:5px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.mock-wm{font-family:var(--font-d);font-size:11px;font-weight:800;color:#fff}
-.mock-wm span{color:var(--orange)}
-.mock-add{background:var(--orange);border-radius:7px;padding:6px 8px;text-align:center;font-size:10px;font-weight:700;color:#fff;margin-bottom:6px}
-.mock-section{font-size:9px;font-weight:700;letter-spacing:.1em;color:rgba(255,255,255,.25);text-transform:uppercase;padding:4px 6px 2px}
-.mock-nav{display:flex;align-items:center;gap:6px;padding:5px 6px;border-radius:6px;font-size:10.5px;font-weight:500;color:rgba(255,255,255,.5)}
-.mock-nav.active{background:rgba(255,255,255,.1);color:#fff}
-.mock-nav svg{opacity:.6;flex-shrink:0}
-.mock-nav.active svg{opacity:1}
-.mock-proj{display:flex;align-items:center;gap:6px;padding:4px 6px;font-size:10px;color:rgba(255,255,255,.45)}
-.mock-proj-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
-.mock-main{padding:14px 12px;display:flex;flex-direction:column;gap:8px;overflow:hidden}
-.mock-header{margin-bottom:2px}
-.mock-eyebrow{font-size:9px;font-weight:700;letter-spacing:.1em;color:var(--orange);text-transform:uppercase;opacity:.8}
-.mock-title{font-family:var(--font-d);font-size:14px;font-weight:800;color:#fff;letter-spacing:-.3px}
-.mock-date{font-size:9px;color:rgba(255,255,255,.3)}
-.mock-task-card{background:rgba(255,255,255,.06);border-radius:8px;padding:9px 10px;display:flex;align-items:flex-start;gap:8px;border:1px solid transparent}
-.mock-task-card.done{opacity:.45}
-.mock-task-card.highlight{border-color:rgba(232,121,75,.3);background:rgba(232,121,75,.08)}
-.mock-circle{width:16px;height:16px;border-radius:50%;border:1.5px solid rgba(255,255,255,.25);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center}
-.mock-circle.done-c{background:var(--orange);border-color:var(--orange)}
-.mock-circle.done-c::after{content:'';width:5px;height:3px;border-left:1.5px solid #fff;border-bottom:1.5px solid #fff;transform:rotate(-45deg);margin-top:-1px}
-.mock-task-info{flex:1;min-width:0}
-.mock-task-title{font-size:10.5px;font-weight:500;color:rgba(255,255,255,.85);line-height:1.3}
-.mock-task-title.done-t{text-decoration:line-through;color:rgba(255,255,255,.3)}
-.mock-task-meta{display:flex;gap:4px;margin-top:3px;align-items:center}
-.mock-pill{font-size:8.5px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.4);border-radius:3px;padding:1px 5px}
-.mock-pill.orange{background:rgba(232,121,75,.2);color:var(--orange)}
-.mock-confetti{text-align:center;font-size:9px;color:rgba(255,255,255,.25);font-style:italic;padding:2px 0}
+/* HERO RIGHT — Mockup */
+.hero-right{display:flex;align-items:center;justify-content:center}
+.mockup-wrap{width:100%;max-width:520px;position:relative}
+.mockup-wrap::before{content:'';position:absolute;inset:-30px;background:radial-gradient(ellipse 80% 80% at 50% 50%,rgba(232,121,75,.08),transparent 70%);pointer-events:none;z-index:0}
+.app-frame{position:relative;z-index:1;background:var(--navy2);border-radius:16px;border:1px solid rgba(255,255,255,.1);overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.06);transform:perspective(1100px) rotateY(-6deg) rotateX(2deg);transition:transform .4s ease}
+.app-frame:hover{transform:perspective(1100px) rotateY(-2deg) rotateX(1deg)}
+@media(max-width:860px){.app-frame{transform:none}.mockup-wrap{max-width:400px}}
+.frame-bar{background:#111e2d;padding:7px 12px;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(255,255,255,.06)}
+.frame-dots{display:flex;gap:4px}
+.frame-dot{width:8px;height:8px;border-radius:50%}
+.frame-url{flex:1;background:rgba(255,255,255,.05);border-radius:4px;padding:3px 10px;font-size:9.5px;color:rgba(255,255,255,.25);text-align:center;font-family:monospace}
+.frame-body{display:grid;grid-template-columns:130px 1fr}
+@media(max-width:460px){.frame-body{grid-template-columns:100px 1fr}}
+/* Sidebar */
+.f-sidebar{background:#0f1c2a;padding:10px 7px;border-right:1px solid rgba(255,255,255,.05);display:flex;flex-direction:column;gap:3px}
+.f-brand{display:flex;align-items:center;gap:6px;padding:3px 5px 9px;border-bottom:1px solid rgba(255,255,255,.05);margin-bottom:3px}
+.f-logo{width:18px;height:18px;border:1px solid rgba(255,255,255,.15);border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.f-wm{font-family:var(--font-d);font-size:10px;font-weight:800;color:#fff}
+.f-wm span{color:var(--orange)}
+.f-add{background:var(--orange);border-radius:6px;padding:5px 7px;font-size:9px;font-weight:700;color:#fff;margin-bottom:4px;text-align:center}
+.f-sec{font-size:8px;font-weight:700;letter-spacing:.1em;color:rgba(255,255,255,.22);text-transform:uppercase;padding:3px 5px 1px}
+.f-nav{display:flex;align-items:center;gap:5px;padding:4px 5px;border-radius:5px;font-size:9.5px;font-weight:500;color:rgba(255,255,255,.45)}
+.f-nav.on{background:rgba(255,255,255,.09);color:#fff}
+.f-nav svg{opacity:.55;flex-shrink:0}
+.f-nav.on svg{opacity:1}
+.f-proj{display:flex;align-items:center;gap:5px;padding:3px 5px;font-size:9px;color:rgba(255,255,255,.38)}
+.f-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
+/* Main */
+.f-main{padding:12px 11px;display:flex;flex-direction:column;gap:7px}
+.f-eyebrow{font-size:8px;font-weight:700;letter-spacing:.1em;color:var(--orange);text-transform:uppercase;opacity:.75}
+.f-title{font-family:var(--font-d);font-size:15px;font-weight:800;color:#fff;letter-spacing:-.3px;line-height:1.1}
+.f-date{font-size:8.5px;color:rgba(255,255,255,.28);margin-bottom:2px}
+.f-task{background:rgba(255,255,255,.055);border-radius:7px;padding:8px 9px;display:flex;align-items:flex-start;gap:7px;border:1px solid transparent}
+.f-task.hl{border-color:rgba(232,121,75,.28);background:rgba(232,121,75,.07)}
+.f-task.dim{opacity:.38}
+.f-circle{width:14px;height:14px;border-radius:50%;border:1.5px solid rgba(255,255,255,.22);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center}
+.f-circle.ok{background:var(--orange);border-color:var(--orange)}
+.f-circle.ok::after{content:'';width:4px;height:2.5px;border-left:1.5px solid #fff;border-bottom:1.5px solid #fff;transform:rotate(-45deg);margin-top:-1px}
+.f-task-body{flex:1;min-width:0}
+.f-task-title{font-size:10px;font-weight:500;color:rgba(255,255,255,.82);line-height:1.3}
+.f-task-title.crossed{text-decoration:line-through;color:rgba(255,255,255,.28)}
+.f-tags{display:flex;gap:3px;margin-top:2.5px;flex-wrap:wrap}
+.f-tag{font-size:7.5px;background:rgba(255,255,255,.07);color:rgba(255,255,255,.38);border-radius:3px;padding:1px 4px}
+.f-tag.hot{background:rgba(232,121,75,.2);color:var(--orange)}
+.f-hint{text-align:center;font-size:8.5px;color:rgba(255,255,255,.22);font-style:italic;padding-top:2px}
 
-/* PLATFORMS */
-.platforms{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding:12px 24px;display:flex;align-items:center;justify-content:center;gap:28px;flex-wrap:wrap}
-.plat{display:flex;align-items:center;gap:5px;font-size:12px;color:rgba(255,255,255,.35);font-weight:500}
+/* PLATFORMS BAR */
+.plat-bar{background:rgba(255,255,255,.03);border-top:1px solid rgba(255,255,255,.07);padding:13px 24px;display:flex;align-items:center;justify-content:center;gap:28px;flex-wrap:wrap}
+.plat-item{display:flex;align-items:center;gap:5px;font-size:12px;color:rgba(255,255,255,.33);font-weight:500}
+.plat-item svg{opacity:.4}
+
+/* SECTION COMMONS */
+.sec-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);margin-bottom:10px;display:block}
+.sec-title{font-family:var(--font-d);font-size:clamp(24px,3.2vw,36px);font-weight:800;letter-spacing:-.8px;color:var(--ink);line-height:1.12}
+.sec-title.light{color:var(--white)}
 
 /* FEATURES */
-.features{padding:80px 24px;background:var(--light)}
-.features-inner{max-width:900px;margin:0 auto;text-align:center}
-.sec-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);margin-bottom:10px;display:block}
-.sec-title{font-family:var(--font-d);font-size:clamp(24px,3.5vw,36px);font-weight:800;letter-spacing:-1px;color:var(--ink);line-height:1.15;margin:0 auto;max-width:500px}
-.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-top:40px}
-.feat{background:var(--white);border-radius:12px;padding:24px;border:1px solid #e8e8e6;transition:box-shadow .15s,transform .15s;text-align:left}
-.feat:hover{box-shadow:0 8px 24px rgba(22,36,59,.08);transform:translateY(-2px)}
-.feat-ico{width:38px;height:38px;background:rgba(232,121,75,.1);border-radius:9px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;color:var(--orange)}
-.feat h3{font-family:var(--font-d);font-size:15px;font-weight:700;color:var(--ink);margin-bottom:6px}
-.feat p{font-size:13px;color:var(--ink-2);line-height:1.6}
+.features{padding:88px 24px;background:var(--light)}
+.features-inner{max-width:960px;margin:0 auto}
+.features-head{text-align:center;margin-bottom:48px}
+.features-head .sec-title{max-width:440px;margin:0 auto}
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:720px){.feat-grid{grid-template-columns:1fr}}
+.feat-card{background:var(--white);border-radius:var(--r);padding:28px;border:1px solid #e4e4e2;transition:transform .15s,box-shadow .15s;position:relative;overflow:hidden}
+.feat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--orange);transform:scaleX(0);transform-origin:left;transition:transform .25s ease}
+.feat-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(22,36,59,.1)}
+.feat-card:hover::before{transform:scaleX(1)}
+.feat-ico{width:44px;height:44px;background:rgba(232,121,75,.1);border-radius:11px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;color:var(--orange)}
+.feat-card h3{font-family:var(--font-d);font-size:16px;font-weight:700;color:var(--ink);margin-bottom:8px}
+.feat-card p{font-size:13.5px;color:var(--ink-2);line-height:1.65}
 
-/* SCREENS SECTION */
-.screens{padding:80px 24px;background:var(--navy);overflow:hidden}
-.screens-inner{max-width:1000px;margin:0 auto}
-.screens-header{text-align:center;margin-bottom:52px}
-.screens-header .sec-title{color:var(--white)}
-.screens-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
-@media(max-width:700px){.screens-grid{grid-template-columns:1fr}}
-.screen-card{background:var(--navy2);border-radius:14px;border:1px solid rgba(255,255,255,.09);overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,.4)}
-.screen-label{padding:10px 14px;font-size:11px;font-weight:600;color:rgba(255,255,255,.35);letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,.06)}
-.screen-content{padding:14px}
+/* APP SCREENS */
+.screens{padding:88px 24px;background:var(--navy)}
+.screens-inner{max-width:960px;margin:0 auto}
+.screens-head{text-align:center;margin-bottom:52px}
+.screens-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:680px){.screens-grid{grid-template-columns:1fr}}
+.screen-card{background:var(--navy2);border-radius:14px;border:1px solid rgba(255,255,255,.08);overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,.35)}
+.screen-label{padding:10px 14px;font-size:11px;font-weight:600;color:rgba(255,255,255,.32);letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,.06)}
+.screen-content{padding:16px}
 
-/* Screen 1: Mensajes */
-.msg-person{display:flex;align-items:center;gap:10px;padding:8px 0 12px;border-bottom:1px solid rgba(255,255,255,.06);margin-bottom:12px}
-.msg-av{width:32px;height:32px;border-radius:50%;background:var(--orange);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;flex-shrink:0}
-.msg-name{font-size:12px;font-weight:600;color:#fff}
-.msg-count{font-size:10px;color:rgba(255,255,255,.35)}
-.msg-bubble{background:rgba(255,255,255,.06);border-radius:8px;padding:10px 12px;font-size:10.5px;color:rgba(255,255,255,.7);line-height:1.6;position:relative}
-.msg-bubble::before{content:'WhatsApp';position:absolute;top:-8px;right:10px;font-size:8.5px;font-weight:600;background:#25D366;color:#fff;padding:1px 6px;border-radius:4px}
-.msg-send{display:flex;justify-content:flex-end;margin-top:8px}
-.msg-send-btn{background:#25D366;color:#fff;border:none;border-radius:7px;padding:6px 14px;font-size:10px;font-weight:700;cursor:default}
+/* WhatsApp screen */
+.wa-person{display:flex;align-items:center;gap:10px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.06);margin-bottom:12px}
+.wa-av{width:34px;height:34px;border-radius:50%;background:var(--orange);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;flex-shrink:0}
+.wa-info-name{font-size:12.5px;font-weight:600;color:#fff}
+.wa-info-sub{font-size:10px;color:rgba(255,255,255,.32)}
+.wa-bubble{background:rgba(255,255,255,.055);border-radius:4px 10px 10px 10px;padding:10px 12px;font-size:10.5px;color:rgba(255,255,255,.72);line-height:1.65;position:relative;margin-bottom:8px}
+.wa-badge{position:absolute;top:-9px;right:8px;background:#25D366;color:#fff;font-size:8px;font-weight:700;padding:2px 7px;border-radius:4px;letter-spacing:.03em}
+.wa-footer{display:flex;justify-content:flex-end}
+.wa-btn{background:#25D366;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:10.5px;font-weight:700;cursor:default;font-family:var(--font-b)}
 
-/* Screen 2: Revisión */
-.rev-header{font-size:11px;font-weight:700;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px}
-.rev-focus{background:rgba(232,121,75,.12);border:1px solid rgba(232,121,75,.2);border-radius:8px;padding:10px 12px;margin-bottom:8px}
-.rev-focus-label{font-size:9px;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
-.rev-focus-text{font-size:11px;color:rgba(255,255,255,.75);font-weight:500}
-.rev-item{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.05)}
-.rev-num{width:18px;height:18px;border-radius:50%;background:var(--orange);font-size:9px;font-weight:700;color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.rev-text{font-size:10.5px;color:rgba(255,255,255,.65)}
+/* Daily review screen */
+.dr-label{font-size:9.5px;font-weight:700;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px}
+.dr-focus{background:rgba(232,121,75,.1);border:1px solid rgba(232,121,75,.18);border-radius:8px;padding:10px 12px;margin-bottom:10px}
+.dr-focus-tag{font-size:8.5px;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+.dr-focus-text{font-size:10.5px;color:rgba(255,255,255,.7);font-weight:500;line-height:1.4}
+.dr-item{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.dr-item:last-child{border-bottom:none}
+.dr-num{width:19px;height:19px;border-radius:50%;background:rgba(232,121,75,.2);font-size:9px;font-weight:700;color:var(--orange);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.dr-text{font-size:10.5px;color:rgba(255,255,255,.6)}
 
-/* BETA */
-.beta{background:rgba(232,121,75,.07);border-top:1px solid rgba(232,121,75,.13);border-bottom:1px solid rgba(232,121,75,.13);padding:20px 24px;text-align:center}
-.beta p{max-width:580px;margin:0 auto;font-size:13.5px;color:var(--ink-2);line-height:1.6}
-.beta p strong{color:var(--orange)}
-.beta p a{color:var(--orange);text-decoration:none;font-weight:500}
+/* BETA STRIP */
+.beta-strip{background:rgba(232,121,75,.06);border-top:1px solid rgba(232,121,75,.12);border-bottom:1px solid rgba(232,121,75,.12);padding:18px 24px;text-align:center}
+.beta-strip p{max-width:560px;margin:0 auto;font-size:13.5px;color:var(--ink-2);line-height:1.6}
+.beta-strip strong{color:var(--orange)}
+.beta-strip a{color:var(--orange);text-decoration:none;font-weight:500}
+.beta-strip a:hover{text-decoration:underline}
 
 /* CTA FINAL */
-.cta-final{background:var(--navy);padding:88px 24px;text-align:center;position:relative;overflow:hidden}
-.cta-final::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 55% 70% at 50% 100%,rgba(232,121,75,.1),transparent 65%);pointer-events:none}
-.free-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.25);color:#4ade80;font-size:12px;font-weight:600;padding:4px 12px;border-radius:20px;margin-bottom:22px;letter-spacing:.03em}
-.cta-final h2{font-family:var(--font-d);font-size:clamp(28px,5vw,48px);font-weight:800;color:var(--white);letter-spacing:-1.5px;margin-bottom:12px;line-height:1.1}
+.cta-final{background:var(--navy);padding:100px 24px;text-align:center;position:relative;overflow:hidden}
+.cta-final::after{content:'';position:absolute;bottom:-60px;left:50%;transform:translateX(-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(232,121,75,.12),transparent 70%);pointer-events:none}
+.free-chip{display:inline-flex;align-items:center;gap:5px;background:rgba(74,222,128,.09);border:1px solid rgba(74,222,128,.22);color:#4ade80;font-size:12px;font-weight:600;padding:4px 12px;border-radius:20px;margin-bottom:24px;letter-spacing:.03em}
+.cta-final h2{font-family:var(--font-d);font-size:clamp(30px,5vw,52px);font-weight:800;color:var(--white);letter-spacing:-1.5px;margin-bottom:12px;line-height:1.08}
 .cta-final h2 em{color:var(--orange);font-style:italic}
-.cta-final p{font-size:15px;color:rgba(255,255,255,.42);margin-bottom:32px}
+.cta-final .sub{font-size:16px;color:rgba(255,255,255,.4);margin-bottom:36px}
+.cta-final .btn-main{font-size:17px;padding:16px 38px}
 
 /* FOOTER */
-footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.06);padding:28px 24px;text-align:center}
+footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.06);padding:30px 24px;text-align:center}
 .footer-brand{font-family:var(--font-d);font-size:18px;font-weight:800;color:var(--white);letter-spacing:-.5px;margin-bottom:3px}
 .footer-brand span{color:var(--orange)}
-.footer-slogan{font-size:12px;color:rgba(255,255,255,.25);font-style:italic;margin-bottom:16px}
-.footer-meta{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:rgba(255,255,255,.27);flex-wrap:wrap;justify-content:center}
-.footer-meta a{color:rgba(255,255,255,.45);text-decoration:none;font-weight:500}
+.footer-slogan{font-size:11.5px;color:rgba(255,255,255,.25);font-style:italic;margin-bottom:16px}
+.footer-meta{display:inline-flex;align-items:center;gap:7px;font-size:12px;color:rgba(255,255,255,.26);flex-wrap:wrap;justify-content:center}
+.footer-meta a{color:rgba(255,255,255,.44);text-decoration:none;font-weight:500}
 .footer-meta a:hover{color:var(--white)}
 .footer-copy{font-size:11px;color:rgba(255,255,255,.15);margin-top:12px}
-.flag-co{border-radius:2px;vertical-align:middle;display:inline-block}
-.globe-ico{vertical-align:middle;display:inline-block}
+.flag-co{border-radius:2px;vertical-align:middle}
+.globe-ico{vertical-align:middle}
 </style>
 </head>
 <body>
@@ -193,137 +219,139 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.06);padding
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-left">
-    <div class="eyebrow"><span class="live-dot"></span><span data-i18n="eyebrow">Live now · No download needed</span></div>
-    <h1 data-i18n-h="h1">Your tasks.<br><em>Actually done.</em></h1>
-    <p class="hero-sub" data-i18n="hero-sub">Organize your day, follow up on what matters, and get things done — from any device, right now.</p>
-    <div class="hero-actions">
-      <a href="https://app.jazzdoit.co" class="btn-main" target="_blank" data-i18n="cta-main">Create free account →</a>
-      <a href="#features" class="btn-sec" data-i18n="cta-sec">See what it does</a>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="eyebrow fade-up"><span class="live-dot"></span><span data-i18n="eyebrow">Live now · No download needed</span></div>
+      <h1 class="fade-up delay-1" data-i18n-h="h1">Your tasks.<br><em>Actually done.</em></h1>
+      <p class="hero-sub fade-up delay-2" data-i18n="hero-sub">Organize your day, follow up on what matters, and get things done — from any device, right now.</p>
+      <div class="hero-btns fade-up delay-2">
+        <a href="https://app.jazzdoit.co" class="btn-main" target="_blank" data-i18n="cta-main">Create free account →</a>
+        <a href="#features" class="btn-sec" data-i18n="cta-sec">See what it does</a>
+      </div>
+      <div class="trust-row fade-up delay-3">
+        <span class="trust-item">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+          <span data-i18n="trust-1">Completely free</span>
+        </span>
+        <span class="trust-item">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="7" y="2" width="10" height="20" rx="2"/></svg>
+          <span data-i18n="trust-2">Any device</span>
+        </span>
+        <span class="trust-item">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span data-i18n="trust-3">Secure & private</span>
+        </span>
+      </div>
     </div>
-    <div class="trust-row">
-      <span class="trust-item">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-        <span data-i18n="trust-1">Completely free</span>
-      </span>
-      <span class="trust-sep">·</span>
-      <span class="trust-item">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="7" y="2" width="10" height="20" rx="2"/></svg>
-        <span data-i18n="trust-2">Phone, browser & desktop</span>
-      </span>
-      <span class="trust-sep">·</span>
-      <span class="trust-item">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        <span data-i18n="trust-3">Secure & private</span>
-      </span>
+
+    <!-- APP MOCKUP -->
+    <div class="hero-right fade-up delay-2">
+      <div class="mockup-wrap">
+        <div class="app-frame">
+          <div class="frame-bar">
+            <div class="frame-dots">
+              <div class="frame-dot" style="background:#ff5f57"></div>
+              <div class="frame-dot" style="background:#ffbd2e"></div>
+              <div class="frame-dot" style="background:#28c840"></div>
+            </div>
+            <div class="frame-url">app.jazzdoit.co</div>
+          </div>
+          <div class="frame-body">
+            <div class="f-sidebar">
+              <div class="f-brand">
+                <div class="f-logo"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12L9 16" stroke="#E8794B" stroke-width="2.8" stroke-linecap="round"/><path d="M9 16L19 7" stroke="#fff" stroke-width="2.8" stroke-linecap="round"/></svg></div>
+                <span class="f-wm">jazz<span>doit</span></span>
+              </div>
+              <div class="f-add" data-i18n="mock-add">+ Add task</div>
+              <div class="f-sec" data-i18n="mock-views">VIEWS</div>
+              <div class="f-nav on">
+                <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span data-i18n="mock-today">My day</span>
+              </div>
+              <div class="f-nav">
+                <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                <span data-i18n="mock-tasks">Tasks</span>
+              </div>
+              <div class="f-nav">
+                <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                <span data-i18n="mock-done">Completed</span>
+              </div>
+              <div class="f-sec" style="margin-top:5px" data-i18n="mock-projects">PROJECTS</div>
+              <div class="f-proj"><div class="f-dot" style="background:#4ade80"></div><span data-i18n="mock-p1">Sierraluna</span></div>
+              <div class="f-proj"><div class="f-dot" style="background:#60a5fa"></div><span data-i18n="mock-p2">Work</span></div>
+              <div class="f-proj"><div class="f-dot" style="background:#f472b6"></div><span data-i18n="mock-p3">Personal</span></div>
+            </div>
+            <div class="f-main">
+              <div>
+                <div class="f-eyebrow" data-i18n="mock-eye">MY DAY</div>
+                <div class="f-title" data-i18n="mock-today">My day</div>
+                <div class="f-date" data-i18n="mock-date">Today · Friday, June 20</div>
+              </div>
+              <div class="f-task dim">
+                <div class="f-circle ok"></div>
+                <div class="f-task-body">
+                  <div class="f-task-title crossed" data-i18n="mock-t1">Call with Harlan</div>
+                  <div class="f-tags"><span class="f-tag" data-i18n="mock-p1">Sierraluna</span></div>
+                </div>
+              </div>
+              <div class="f-task dim">
+                <div class="f-circle ok"></div>
+                <div class="f-task-body">
+                  <div class="f-task-title crossed" data-i18n="mock-t2">Review Q2 report</div>
+                  <div class="f-tags"><span class="f-tag" data-i18n="mock-p2">Work</span></div>
+                </div>
+              </div>
+              <div class="f-task hl">
+                <div class="f-circle"></div>
+                <div class="f-task-body">
+                  <div class="f-task-title" data-i18n="mock-t3">Send contract to supplier</div>
+                  <div class="f-tags"><span class="f-tag hot" data-i18n="mock-today-tag">Today</span><span class="f-tag" data-i18n="mock-p2">Work</span></div>
+                </div>
+              </div>
+              <div class="f-task">
+                <div class="f-circle"></div>
+                <div class="f-task-body">
+                  <div class="f-task-title" data-i18n="mock-t4">Team standup notes</div>
+                  <div class="f-tags"><span class="f-tag" data-i18n="mock-p2">Work</span></div>
+                </div>
+              </div>
+              <div class="f-hint" data-i18n="mock-hint">🎉 2 done today — keep going</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- APP MOCKUP -->
-  <div class="hero-right">
-    <div class="app-mockup">
-      <div class="mock-topbar">
-        <div class="mock-dots">
-          <div class="mock-dot" style="background:#ff5f57"></div>
-          <div class="mock-dot" style="background:#ffbd2e"></div>
-          <div class="mock-dot" style="background:#28c840"></div>
-        </div>
-        <div class="mock-url">app.jazzdoit.co</div>
-      </div>
-      <div class="mock-body">
-        <div class="mock-sidebar">
-          <div class="mock-brand">
-            <div class="mock-logo">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 12L9 16" stroke="#E8794B" stroke-width="2.5" stroke-linecap="round"/><path d="M9 16L19 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/></svg>
-            </div>
-            <span class="mock-wm">jazz<span>doit</span></span>
-          </div>
-          <div class="mock-add" data-i18n="mock-add">+ Add task</div>
-          <div class="mock-section" data-i18n="mock-views">VIEWS</div>
-          <div class="mock-nav active">
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            <span data-i18n="mock-today">My day</span>
-          </div>
-          <div class="mock-nav">
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
-            <span data-i18n="mock-tasks">Tasks</span>
-          </div>
-          <div class="mock-nav">
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-            <span data-i18n="mock-done">Completed</span>
-          </div>
-          <div class="mock-section" style="margin-top:6px" data-i18n="mock-projects">PROJECTS</div>
-          <div class="mock-proj"><div class="mock-proj-dot" style="background:#4ade80"></div><span data-i18n="mock-p1">Sierraluna</span></div>
-          <div class="mock-proj"><div class="mock-proj-dot" style="background:#60a5fa"></div><span data-i18n="mock-p2">Work</span></div>
-          <div class="mock-proj"><div class="mock-proj-dot" style="background:#f472b6"></div><span data-i18n="mock-p3">Personal</span></div>
-        </div>
-        <div class="mock-main">
-          <div class="mock-header">
-            <div class="mock-eyebrow" data-i18n="mock-today-eye">MY DAY</div>
-            <div class="mock-title" data-i18n="mock-today-title">My day</div>
-            <div class="mock-date" data-i18n="mock-today-date">Today · Friday, June 20</div>
-          </div>
-          <div class="mock-task-card done">
-            <div class="mock-circle done-c"></div>
-            <div class="mock-task-info">
-              <div class="mock-task-title done-t" data-i18n="mock-t1">Call with Harlan</div>
-              <div class="mock-task-meta"><span class="mock-pill" data-i18n="mock-p1">Sierraluna</span></div>
-            </div>
-          </div>
-          <div class="mock-task-card done">
-            <div class="mock-circle done-c"></div>
-            <div class="mock-task-info">
-              <div class="mock-task-title done-t" data-i18n="mock-t2">Review Q2 report</div>
-              <div class="mock-task-meta"><span class="mock-pill" data-i18n="mock-p2">Work</span></div>
-            </div>
-          </div>
-          <div class="mock-task-card highlight">
-            <div class="mock-circle"></div>
-            <div class="mock-task-info">
-              <div class="mock-task-title" data-i18n="mock-t3">Send contract to supplier</div>
-              <div class="mock-task-meta"><span class="mock-pill orange" data-i18n="mock-today-label">Today</span><span class="mock-pill" data-i18n="mock-p2">Work</span></div>
-            </div>
-          </div>
-          <div class="mock-task-card">
-            <div class="mock-circle"></div>
-            <div class="mock-task-info">
-              <div class="mock-task-title" data-i18n="mock-t4">Team standup notes</div>
-              <div class="mock-task-meta"><span class="mock-pill" data-i18n="mock-p2">Work</span></div>
-            </div>
-          </div>
-          <div class="mock-confetti" data-i18n="mock-confetti">🎉 2 done today — keep going</div>
-        </div>
-      </div>
-    </div>
+  <!-- PLATFORMS BAR -->
+  <div class="plat-bar">
+    <span class="plat-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg><span data-i18n="plat-1">Browser</span></span>
+    <span class="plat-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="7" y="2" width="10" height="20" rx="2"/></svg><span data-i18n="plat-2">iPhone & Android</span></span>
+    <span class="plat-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M2 20h20"/></svg><span data-i18n="plat-3">Windows & Mac</span></span>
+    <span class="plat-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><span data-i18n="plat-4">Installs like a native app</span></span>
   </div>
 </section>
-
-<!-- PLATFORMS -->
-<div class="platforms">
-  <span class="plat"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg><span data-i18n="plat-browser">Browser</span></span>
-  <span class="plat"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="7" y="2" width="10" height="20" rx="2"/></svg><span data-i18n="plat-mobile">iPhone & Android</span></span>
-  <span class="plat"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M2 20h20"/></svg><span data-i18n="plat-desktop">Windows & Mac</span></span>
-  <span class="plat"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><span data-i18n="plat-install">Installs like a native app</span></span>
-</div>
 
 <!-- FEATURES -->
 <section class="features" id="features">
   <div class="features-inner">
-    <span class="sec-label" data-i18n="feat-label">What jazzdoit does</span>
-    <h2 class="sec-title" data-i18n-h="feat-title">Everything you need.<br>Nothing you don't.</h2>
+    <div class="features-head fade-up">
+      <span class="sec-label" data-i18n="feat-label">What jazzdoit does</span>
+      <h2 class="sec-title" data-i18n-h="feat-title">Everything you need.<br>Nothing you don't.</h2>
+    </div>
     <div class="feat-grid">
-      <div class="feat">
-        <div class="feat-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+      <div class="feat-card fade-up">
+        <div class="feat-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
         <h3 data-i18n="f1-title">Your day at a glance</h3>
         <p data-i18n="f1-desc">Today and tomorrow, side by side. Drag to reschedule, assign projects, and keep moving without friction.</p>
       </div>
-      <div class="feat">
-        <div class="feat-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+      <div class="feat-card fade-up delay-1">
+        <div class="feat-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
         <h3 data-i18n="f2-title">Follow up in one tap</h3>
         <p data-i18n="f2-desc">Assign tasks to your team. Generate a ready-to-send WhatsApp message with all pending items — no typing.</p>
       </div>
-      <div class="feat">
-        <div class="feat-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+      <div class="feat-card fade-up delay-2">
+        <div class="feat-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
         <h3 data-i18n="f3-title">Daily email summary</h3>
         <p data-i18n="f3-desc">Wake up to your day, already organized. jazzdoit sends your agenda every morning before you open the app.</p>
       </div>
@@ -334,67 +362,63 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.06);padding
 <!-- APP SCREENS -->
 <section class="screens" id="screens">
   <div class="screens-inner">
-    <div class="screens-header">
+    <div class="screens-head fade-up">
       <span class="sec-label" data-i18n="screens-label">Inside the app</span>
-      <h2 class="sec-title" data-i18n-h="screens-title">Built for how you<br>actually work</h2>
+      <h2 class="sec-title light" data-i18n-h="screens-title">Built for how you<br>actually work</h2>
     </div>
     <div class="screens-grid">
-
-      <!-- Screen 1: Follow-up messages -->
-      <div class="screen-card">
+      <!-- WhatsApp follow-up -->
+      <div class="screen-card fade-up">
         <div class="screen-label" data-i18n="screen1-label">📲 Follow-up messages</div>
         <div class="screen-content">
-          <div class="msg-person">
-            <div class="msg-av">H</div>
+          <div class="wa-person">
+            <div class="wa-av">H</div>
             <div>
-              <div class="msg-name">Harlan</div>
-              <div class="msg-count" data-i18n="msg-count">3 pending tasks</div>
+              <div class="wa-info-name">Harlan</div>
+              <div class="wa-info-sub" data-i18n="wa-sub">3 pending tasks</div>
             </div>
           </div>
-          <div class="msg-bubble" data-i18n="msg-bubble">
-            Hi Harlan.<br><br>
-            We have the following pending:<br>
-            • Send updated contract<br>
-            • Confirm delivery date<br>
-            • Invoice approval
+          <div class="wa-bubble">
+            <span class="wa-badge">WhatsApp</span>
+            <span data-i18n-h="wa-msg">Hi Harlan.<br><br>We have the following pending:<br>• Send updated contract<br>• Confirm delivery date<br>• Invoice approval</span>
           </div>
-          <div class="msg-send"><button class="msg-send-btn" data-i18n="msg-send">Send via WhatsApp</button></div>
+          <div class="wa-footer">
+            <button class="wa-btn" data-i18n="wa-btn">Send via WhatsApp</button>
+          </div>
         </div>
       </div>
-
-      <!-- Screen 2: Daily review -->
-      <div class="screen-card">
+      <!-- Daily review -->
+      <div class="screen-card fade-up delay-1">
         <div class="screen-label" data-i18n="screen2-label">☀️ Daily review</div>
         <div class="screen-content">
-          <div class="rev-header" data-i18n="rev-header">Today's focus</div>
-          <div class="rev-focus">
-            <div class="rev-focus-label" data-i18n="rev-top3">Top 3 of the day</div>
-            <div class="rev-focus-text" data-i18n="rev-focus-text">Close the Sierraluna deal, follow up with Harlan, review budget</div>
+          <div class="dr-label" data-i18n="dr-label">Today's focus</div>
+          <div class="dr-focus">
+            <div class="dr-focus-tag" data-i18n="dr-top3">Top 3 of the day</div>
+            <div class="dr-focus-text" data-i18n="dr-focus">Close the Sierraluna deal, follow up with Harlan, review budget</div>
           </div>
-          <div class="rev-item"><div class="rev-num">1</div><div class="rev-text" data-i18n="rev-t1">Close Sierraluna deal with Harlan</div></div>
-          <div class="rev-item"><div class="rev-num">2</div><div class="rev-text" data-i18n="rev-t2">Review Q3 budget projection</div></div>
-          <div class="rev-item"><div class="rev-num">3</div><div class="rev-text" data-i18n="rev-t3">Send contracts to legal team</div></div>
+          <div class="dr-item"><div class="dr-num">1</div><div class="dr-text" data-i18n="dr-t1">Close Sierraluna deal with Harlan</div></div>
+          <div class="dr-item"><div class="dr-num">2</div><div class="dr-text" data-i18n="dr-t2">Review Q3 budget projection</div></div>
+          <div class="dr-item"><div class="dr-num">3</div><div class="dr-text" data-i18n="dr-t3">Send contracts to legal team</div></div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
 <!-- BETA -->
-<div class="beta">
+<div class="beta-strip">
   <p data-i18n-h="beta"><strong>🚧 In active development.</strong> jazzdoit is live and fully usable right now. New features ship regularly — <a href="https://app.jazzdoit.co" target="_blank">join early</a> and help shape what comes next.</p>
 </div>
 
 <!-- CTA FINAL -->
-<section class="cta-final" id="cta">
-  <div class="free-badge">
+<section class="cta-final">
+  <div class="free-chip fade-up">
     <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-    <span data-i18n="free-badge">Completely free</span>
+    <span data-i18n="free-chip">Completely free</span>
   </div>
-  <h2 data-i18n-h="cta-h2">Ready to get<br><em>things done?</em></h2>
-  <p data-i18n="cta-p">Create your account and start today. No setup, no friction.</p>
-  <a href="https://app.jazzdoit.co" class="btn-main" target="_blank" data-i18n="cta-main">Create free account →</a>
+  <h2 class="fade-up delay-1" data-i18n-h="cta-h2">Start today.<br><em>Thank yourself tomorrow.</em></h2>
+  <p class="sub fade-up delay-2" data-i18n="cta-p">Create your account in seconds. No setup, no friction.</p>
+  <a href="https://app.jazzdoit.co" class="btn-main fade-up delay-2" target="_blank" data-i18n="cta-btn">Create free account →</a>
 </section>
 
 <!-- FOOTER -->
@@ -413,72 +437,72 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.06);padding
 </footer>
 
 <script>
-const COPY = {
-  en:{
-    'eyebrow':'Live now · No download needed',
-    'h1':'Your tasks.<br><em>Actually done.</em>',
-    'hero-sub':'Organize your day, follow up on what matters, and get things done — from any device, right now.',
-    'cta-main':'Create free account →','cta-sec':'See what it does',
-    'trust-1':'Completely free','trust-2':'Phone, browser & desktop','trust-3':'Secure & private',
-    'plat-browser':'Browser','plat-mobile':'iPhone & Android','plat-desktop':'Windows & Mac','plat-install':'Installs like a native app',
-    'feat-label':'What jazzdoit does','feat-title':'Everything you need.<br>Nothing you don\'t.',
-    'f1-title':'Your day at a glance','f1-desc':'Today and tomorrow, side by side. Drag to reschedule, assign projects, and keep moving without friction.',
-    'f2-title':'Follow up in one tap','f2-desc':'Assign tasks to your team. Generate a ready-to-send WhatsApp message with all pending items — no typing.',
-    'f3-title':'Daily email summary','f3-desc':'Wake up to your day, already organized. jazzdoit sends your agenda every morning before you open the app.',
-    'screens-label':'Inside the app','screens-title':'Built for how you<br>actually work',
-    'screen1-label':'📲 Follow-up messages','screen2-label':'☀️ Daily review',
-    'msg-count':'3 pending tasks',
-    'msg-bubble':'Hi Harlan.<br><br>We have the following pending:<br>• Send updated contract<br>• Confirm delivery date<br>• Invoice approval',
-    'msg-send':'Send via WhatsApp',
-    'rev-header':'Today\'s focus','rev-top3':'Top 3 of the day',
-    'rev-focus-text':'Close the Sierraluna deal, follow up with Harlan, review budget',
-    'rev-t1':'Close Sierraluna deal with Harlan','rev-t2':'Review Q3 budget projection','rev-t3':'Send contracts to legal team',
-    'mock-add':'+ Add task','mock-views':'VIEWS','mock-today':'My day','mock-tasks':'Tasks','mock-done':'Completed',
-    'mock-projects':'PROJECTS','mock-p1':'Sierraluna','mock-p2':'Work','mock-p3':'Personal',
-    'mock-today-eye':'MY DAY','mock-today-title':'My day','mock-today-date':'Today · Friday, June 20',
-    'mock-today-label':'Today',
-    'mock-t1':'Call with Harlan','mock-t2':'Review Q2 report','mock-t3':'Send contract to supplier','mock-t4':'Team standup notes',
-    'mock-confetti':'🎉 2 done today — keep going',
-    'beta':'<strong>🚧 In active development.</strong> jazzdoit is live and fully usable right now. New features ship regularly — <a href="https://app.jazzdoit.co" target="_blank">join early</a> and help shape what comes next.',
-    'free-badge':'Completely free',
-    'cta-h2':'Ready to get<br><em>things done?</em>',
-    'cta-p':'Create your account and start today. No setup, no friction.',
-    'footer-by':'A product by','nav-cta':'Get started →',
-    'title':'jazzdoit — Get it done!','html-lang':'en',
-  },
-  es:{
-    'eyebrow':'En vivo · Sin descargas',
-    'h1':'Tus tareas.<br><em>Realmente hechas.</em>',
-    'hero-sub':'Organiza tu día, dale seguimiento a lo que importa y haz que las cosas pasen — desde cualquier dispositivo, ahora mismo.',
-    'cta-main':'Crear cuenta →','cta-sec':'Ver cómo funciona',
-    'trust-1':'Completamente gratis','trust-2':'Celular, navegador y escritorio','trust-3':'Seguro y privado',
-    'plat-browser':'Navegador','plat-mobile':'iPhone y Android','plat-desktop':'Windows y Mac','plat-install':'Se instala como app nativa',
-    'feat-label':'Qué hace jazzdoit','feat-title':'Todo lo que necesitas.<br>Nada más.',
-    'f1-title':'Tu día de un vistazo','f1-desc':'Hoy y mañana, lado a lado. Arrastra para reprogramar, asigna proyectos y sigue avanzando sin fricciones.',
-    'f2-title':'Seguimiento en un toque','f2-desc':'Asigna tareas a tu equipo. Genera un mensaje de WhatsApp listo para enviar con todos los pendientes — sin escribir nada.',
-    'f3-title':'Resumen diario por correo','f3-desc':'Despiértate con tu día ya organizado. jazzdoit te envía tu agenda cada mañana antes de que abras la app.',
-    'screens-label':'Dentro de la app','screens-title':'Hecha para como<br>realmente trabajas',
-    'screen1-label':'📲 Mensajes de seguimiento','screen2-label':'☀️ Revisión diaria',
-    'msg-count':'3 tareas pendientes',
-    'msg-bubble':'Hola Harlan.<br><br>Tenemos pendientes los siguientes temas:<br>• Enviar contrato actualizado<br>• Confirmar fecha de entrega<br>• Aprobación de factura',
-    'msg-send':'Enviar por WhatsApp',
-    'rev-header':'Enfoque de hoy','rev-top3':'Top 3 del día',
-    'rev-focus-text':'Cerrar el negocio de Sierraluna, seguimiento con Harlan, revisar presupuesto',
-    'rev-t1':'Cerrar negocio Sierraluna con Harlan','rev-t2':'Revisar proyección presupuesto Q3','rev-t3':'Enviar contratos al equipo legal',
-    'mock-add':'+ Agregar tarea','mock-views':'VISTAS','mock-today':'Mi día','mock-tasks':'Tareas','mock-done':'Realizadas',
-    'mock-projects':'PROYECTOS','mock-p1':'Sierraluna','mock-p2':'Trabajo','mock-p3':'Personal',
-    'mock-today-eye':'MI DÍA','mock-today-title':'Mi día','mock-today-date':'Hoy · Viernes, 20 de junio',
-    'mock-today-label':'Hoy',
-    'mock-t1':'Llamada con Harlan','mock-t2':'Revisar informe Q2','mock-t3':'Enviar contrato al proveedor','mock-t4':'Notas del standup',
-    'mock-confetti':'🎉 2 hechas hoy — sigue así',
-    'beta':'<strong>🚧 En desarrollo activo.</strong> jazzdoit está en vivo y es completamente funcional ahora mismo. Nuevas funciones llegan regularmente — <a href="https://app.jazzdoit.co" target="_blank">únete temprano</a> y ayuda a construirla.',
-    'free-badge':'Completamente gratis',
-    'cta-h2':'¿Listo para hacer<br><em>que las cosas pasen?</em>',
-    'cta-p':'Crea tu cuenta y empieza hoy. Sin configuraciones, sin complicaciones.',
-    'footer-by':'Un producto de','nav-cta':'Comenzar →',
-    'title':'jazzdoit — ¡Get it done!','html-lang':'es',
-  }
-};
+// ── i18n ──────────────────────────────────────────────────────────────────
+const COPY={
+en:{
+  eyebrow:'Live now · No download needed',
+  h1:'Your tasks.<br><em>Actually done.</em>',
+  'hero-sub':'Organize your day, follow up on what matters, and get things done — from any device, right now.',
+  'cta-main':'Create free account →','cta-sec':'See what it does',
+  'trust-1':'Completely free','trust-2':'Any device','trust-3':'Secure & private',
+  'plat-1':'Browser','plat-2':'iPhone & Android','plat-3':'Windows & Mac','plat-4':'Installs like a native app',
+  'feat-label':'What jazzdoit does','feat-title':'Everything you need.<br>Nothing you don\'t.',
+  'f1-title':'Your day at a glance','f1-desc':'Today and tomorrow, side by side. Drag to reschedule, assign projects, and keep moving without friction.',
+  'f2-title':'Follow up in one tap','f2-desc':'Assign tasks to your team. Generate a ready-to-send WhatsApp message with all pending items — no typing.',
+  'f3-title':'Daily email summary','f3-desc':'Wake up to your day, already organized. jazzdoit sends your agenda every morning before you open the app.',
+  'screens-label':'Inside the app','screens-title':'Built for how you<br>actually work',
+  'screen1-label':'📲 Follow-up messages','screen2-label':'☀️ Daily review',
+  'wa-sub':'3 pending tasks',
+  'wa-msg':'Hi Harlan.<br><br>We have the following pending:<br>• Send updated contract<br>• Confirm delivery date<br>• Invoice approval',
+  'wa-btn':'Send via WhatsApp',
+  'dr-label':"Today's focus",'dr-top3':'Top 3 of the day',
+  'dr-focus':'Close the Sierraluna deal, follow up with Harlan, review budget',
+  'dr-t1':'Close Sierraluna deal with Harlan','dr-t2':'Review Q3 budget projection','dr-t3':'Send contracts to legal team',
+  'mock-add':'+ Add task','mock-views':'VIEWS','mock-today':'My day','mock-tasks':'Tasks','mock-done':'Completed',
+  'mock-projects':'PROJECTS','mock-p1':'Sierraluna','mock-p2':'Work','mock-p3':'Personal',
+  'mock-eye':'MY DAY','mock-date':'Today · Friday, June 20','mock-today-tag':'Today',
+  'mock-t1':'Call with Harlan','mock-t2':'Review Q2 report','mock-t3':'Send contract to supplier','mock-t4':'Team standup notes',
+  'mock-hint':'🎉 2 done today — keep going',
+  beta:'<strong>🚧 In active development.</strong> jazzdoit is live and fully usable right now. New features ship regularly — <a href="https://app.jazzdoit.co" target="_blank">join early</a> and help shape what comes next.',
+  'free-chip':'Completely free',
+  'cta-h2':'Start today.<br><em>Thank yourself tomorrow.</em>',
+  'cta-p':'Create your account in seconds. No setup, no friction.',
+  'cta-btn':'Create free account →',
+  'footer-by':'A product by','nav-cta':'Get started →',
+  title:'jazzdoit — Get it done!','html-lang':'en',
+},
+es:{
+  eyebrow:'En vivo · Sin descargas',
+  h1:'Tus tareas.<br><em>Realmente hechas.</em>',
+  'hero-sub':'Organiza tu día, dale seguimiento a lo que importa y haz que las cosas pasen — desde cualquier dispositivo, ahora mismo.',
+  'cta-main':'Crear cuenta →','cta-sec':'Ver cómo funciona',
+  'trust-1':'Completamente gratis','trust-2':'Cualquier dispositivo','trust-3':'Seguro y privado',
+  'plat-1':'Navegador','plat-2':'iPhone y Android','plat-3':'Windows y Mac','plat-4':'Se instala como app nativa',
+  'feat-label':'Qué hace jazzdoit','feat-title':'Todo lo que necesitas.<br>Nada más.',
+  'f1-title':'Tu día de un vistazo','f1-desc':'Hoy y mañana, lado a lado. Arrastra para reprogramar, asigna proyectos y sigue avanzando sin fricciones.',
+  'f2-title':'Seguimiento en un toque','f2-desc':'Asigna tareas a tu equipo. Genera un mensaje de WhatsApp listo para enviar con todos los pendientes — sin escribir nada.',
+  'f3-title':'Resumen diario por correo','f3-desc':'Despiértate con tu día ya organizado. jazzdoit te envía tu agenda cada mañana antes de que abras la app.',
+  'screens-label':'Dentro de la app','screens-title':'Hecha para como<br>realmente trabajas',
+  'screen1-label':'📲 Mensajes de seguimiento','screen2-label':'☀️ Revisión diaria',
+  'wa-sub':'3 tareas pendientes',
+  'wa-msg':'Hola Harlan.<br><br>Tenemos pendientes los siguientes temas:<br>• Enviar contrato actualizado<br>• Confirmar fecha de entrega<br>• Aprobación de factura',
+  'wa-btn':'Enviar por WhatsApp',
+  'dr-label':'Enfoque de hoy','dr-top3':'Top 3 del día',
+  'dr-focus':'Cerrar el negocio de Sierraluna, seguimiento con Harlan, revisar presupuesto',
+  'dr-t1':'Cerrar negocio Sierraluna con Harlan','dr-t2':'Revisar proyección presupuesto Q3','dr-t3':'Enviar contratos al equipo legal',
+  'mock-add':'+ Agregar tarea','mock-views':'VISTAS','mock-today':'Mi día','mock-tasks':'Tareas','mock-done':'Realizadas',
+  'mock-projects':'PROYECTOS','mock-p1':'Sierraluna','mock-p2':'Trabajo','mock-p3':'Personal',
+  'mock-eye':'MI DÍA','mock-date':'Hoy · Viernes, 20 de junio','mock-today-tag':'Hoy',
+  'mock-t1':'Llamada con Harlan','mock-t2':'Revisar informe Q2','mock-t3':'Enviar contrato al proveedor','mock-t4':'Notas del standup',
+  'mock-hint':'🎉 2 hechas hoy — sigue así',
+  beta:'<strong>🚧 En desarrollo activo.</strong> jazzdoit está en vivo y es completamente funcional ahora mismo. Nuevas funciones llegan regularmente — <a href="https://app.jazzdoit.co" target="_blank">únete temprano</a> y ayuda a construirla.',
+  'free-chip':'Completamente gratis',
+  'cta-h2':'Empieza hoy.<br><em>Mañana te lo agradecerás.</em>',
+  'cta-p':'Crea tu cuenta en segundos. Sin configuraciones, sin complicaciones.',
+  'cta-btn':'Crear cuenta →',
+  'footer-by':'Un producto de','nav-cta':'Comenzar →',
+  title:'jazzdoit — ¡Get it done!','html-lang':'es',
+}};
 
 let LANG='en';
 function detectLang(){try{const s=localStorage.getItem('jd_ll');if(s)return s;}catch(e){}const n=(navigator.language||'en').toLowerCase();return n.startsWith('es')?'es':'en';}
@@ -486,16 +510,26 @@ function setLang(l){
   LANG=l;try{localStorage.setItem('jd_ll',l)}catch(e){}
   const c=COPY[l];
   document.documentElement.lang=c['html-lang'];
-  document.title=c['title'];
-  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(c[k]!==undefined)el.textContent=c[k]});
-  document.querySelectorAll('[data-i18n-h]').forEach(el=>{const k=el.getAttribute('data-i18n-h');if(c[k]!==undefined)el.innerHTML=c[k]});
+  document.title=c.title;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(c[k]!=null)el.textContent=c[k]});
+  document.querySelectorAll('[data-i18n-h]').forEach(el=>{const k=el.getAttribute('data-i18n-h');if(c[k]!=null)el.innerHTML=c[k]});
   document.getElementById('nav-cta-text').textContent=c['nav-cta'];
   document.getElementById('btnEN').classList.toggle('active',l==='en');
   document.getElementById('btnES').classList.toggle('active',l==='es');
 }
 try{LANG=localStorage.getItem('jd_ll')||detectLang();}catch(e){LANG=detectLang();}
 setLang(LANG);
-document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}})});
+
+// ── Fade-in on scroll ──────────────────────────────────────────────────────
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}});
+},{threshold:.12});
+document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));
+
+// ── Smooth scroll ──────────────────────────────────────────────────────────
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}});
+});
 </script>
 </body>
 </html>
