@@ -205,6 +205,43 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.06);padding
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', "G-CWV8G7JGPC");
+
+  // ── Eventos de conversión jazzdoit ──
+  document.addEventListener('DOMContentLoaded',function(){
+
+    // 1. Clic en "Create account" — conversión principal
+    document.querySelectorAll('a[href*="signup=1"]').forEach(function(btn){
+      btn.addEventListener('click',function(){
+        var loc=this.closest('nav')?'nav':this.closest('.hero')?'hero':'cta_final';
+        gtag('event','signup_click',{event_category:'conversion',event_label:loc,value:1});
+      });
+    });
+
+    // 2. Clic en "Sign in"
+    document.querySelectorAll('.nav-login-btn, .btn-login').forEach(function(btn){
+      btn.addEventListener('click',function(){
+        var loc=this.closest('nav')?'nav':'hero';
+        gtag('event','login_click',{event_category:'engagement',event_label:loc});
+      });
+    });
+
+    // 3. Llegó a features (interés real)
+    var featTracked=false;
+    var featEl=document.getElementById('features');
+    if(featEl){new IntersectionObserver(function(e){
+      if(e[0].isIntersecting&&!featTracked){featTracked=true;
+        gtag('event','features_viewed',{event_category:'engagement'});}
+    },{threshold:0.3}).observe(featEl);}
+
+    // 4. Llegó al CTA final (leyó todo)
+    var ctaTracked=false;
+    var ctaEl=document.querySelector('.cta-final');
+    if(ctaEl){new IntersectionObserver(function(e){
+      if(e[0].isIntersecting&&!ctaTracked){ctaTracked=true;
+        gtag('event','cta_final_viewed',{event_category:'engagement'});}
+    },{threshold:0.5}).observe(ctaEl);}
+
+  });
 </script>
 </head>
 <body>
