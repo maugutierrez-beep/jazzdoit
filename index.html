@@ -197,6 +197,75 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.06);padding
 .footer-copy{font-size:11px;color:rgba(255,255,255,.15);margin-top:12px}
 .flag-co{border-radius:2px;vertical-align:middle}
 .globe-ico{vertical-align:middle}
+
+/* ── SOCIAL PROOF ── */
+.social-proof{background:var(--light);padding:56px 24px;border-top:1px solid #e8e8e6}
+.sp-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1fr 2fr;gap:48px;align-items:center}
+@media(max-width:680px){.sp-inner{grid-template-columns:1fr;gap:28px;text-align:center}}
+.sp-stat{text-align:center}
+.sp-num{font-family:var(--font-d);font-size:64px;font-weight:800;color:var(--navy);line-height:1;letter-spacing:-3px}
+.sp-num span{color:var(--orange)}
+.sp-desc{font-size:14px;color:var(--ink-3);margin-top:6px;font-weight:500}
+.sp-quote{background:var(--white);border-radius:16px;padding:28px;border:1px solid #e4e4e2;position:relative}
+.sp-quote::before{content:'"';font-family:var(--font-d);font-size:72px;color:var(--orange);opacity:.2;position:absolute;top:-10px;left:16px;line-height:1}
+.sp-quote-text{font-size:15.5px;color:var(--ink-2);line-height:1.7;font-style:italic;margin-bottom:16px;padding-top:16px}
+.sp-quote-author{display:flex;align-items:center;gap:10px}
+.sp-avatar{width:38px;height:38px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;font-family:var(--font-d);font-weight:700;font-size:14px;color:#fff;flex-shrink:0}
+.sp-author-name{font-size:13.5px;font-weight:600;color:var(--ink)}
+.sp-author-role{font-size:12px;color:var(--ink-3)}
+
+/* ── WHY JAZZDOIT ── */
+.why{background:var(--navy);padding:88px 24px}
+.why-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+@media(max-width:720px){.why-inner{grid-template-columns:1fr;gap:40px}}
+.why-text .sec-title{color:var(--white);margin-bottom:20px}
+.why-text p{font-size:15px;color:rgba(255,255,255,.55);line-height:1.7;margin-bottom:16px}
+.why-text .highlight{color:var(--orange);font-weight:600}
+.why-card{background:var(--navy2);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:14px}
+.why-item{display:flex;align-items:flex-start;gap:14px}
+.why-item-ico{width:38px;height:38px;border-radius:10px;background:rgba(232,121,75,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--orange)}
+.why-item-title{font-size:14px;font-weight:600;color:#fff;margin-bottom:3px}
+.why-item-desc{font-size:12.5px;color:rgba(255,255,255,.45);line-height:1.5}
+.why-vs{display:flex;gap:8px;margin-top:4px;flex-wrap:wrap}
+.why-vs span{font-size:11px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.35);padding:2px 8px;border-radius:20px}
+
+/* ── APP ANIMATION ── */
+.demo{background:var(--light);padding:88px 24px;overflow:hidden}
+.demo-inner{max-width:780px;margin:0 auto;text-align:center}
+.demo-phone{width:240px;margin:40px auto 0;background:var(--navy);border-radius:24px;padding:16px;box-shadow:0 32px 64px rgba(22,36,59,.25);border:2px solid rgba(255,255,255,.08);position:relative}
+.demo-screen{background:#1b2d45;border-radius:14px;overflow:hidden;min-height:340px;display:flex;flex-direction:column}
+.demo-topbar{background:#111e2d;padding:8px 12px;display:flex;align-items:center;gap:6px;border-bottom:1px solid rgba(255,255,255,.06)}
+.demo-topbar-title{font-size:9px;font-weight:700;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.08em}
+.demo-content{padding:14px;display:flex;flex-direction:column;gap:8px;flex:1}
+.demo-task{background:rgba(255,255,255,.06);border-radius:8px;padding:10px 12px;display:flex;align-items:center;gap:9px;transition:all .4s ease;cursor:default}
+.demo-task.completing{background:rgba(232,121,75,.1);border:1px solid rgba(232,121,75,.2)}
+.demo-task.done{opacity:.4}
+.demo-circle{width:16px;height:16px;border-radius:50%;border:1.5px solid rgba(255,255,255,.2);flex-shrink:0;transition:all .3s ease;display:flex;align-items:center;justify-content:center}
+.demo-circle.checked{background:var(--orange);border-color:var(--orange)}
+.demo-circle.checked::after{content:'';width:5px;height:3px;border-left:1.5px solid #fff;border-bottom:1.5px solid #fff;transform:rotate(-45deg);margin-top:-1px}
+.demo-task-text{font-size:10.5px;color:rgba(255,255,255,.8);font-weight:500}
+.demo-task-text.struck{text-decoration:line-through;color:rgba(255,255,255,.3)}
+.demo-confetti{text-align:center;font-size:20px;opacity:0;transition:opacity .4s;padding:8px}
+.demo-confetti.show{opacity:1}
+.demo-wa{background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.2);border-radius:8px;padding:10px 12px;font-size:9.5px;color:rgba(255,255,255,.65);line-height:1.5;opacity:0;transform:translateY(8px);transition:all .4s ease}
+.demo-wa.show{opacity:1;transform:translateY(0)}
+.demo-wa-header{display:flex;align-items:center;gap:6px;margin-bottom:6px}
+.demo-wa-ico{width:16px;height:16px;background:#25D366;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:8px;flex-shrink:0}
+.demo-wa-label{font-size:9px;font-weight:700;color:#25D366}
+
+/* ── FAQ ── */
+.faq{background:var(--light);padding:88px 24px}
+.faq-inner{max-width:720px;margin:0 auto}
+.faq-head{text-align:center;margin-bottom:44px}
+.faq-list{display:flex;flex-direction:column;gap:12px}
+.faq-item{background:var(--white);border:1px solid #e4e4e2;border-radius:12px;overflow:hidden}
+.faq-q{padding:18px 20px;font-size:15px;font-weight:600;color:var(--ink);cursor:pointer;display:flex;justify-content:space-between;align-items:center;user-select:none}
+.faq-q:hover{background:var(--light)}
+.faq-q-ico{font-size:18px;color:var(--orange);transition:transform .2s;flex-shrink:0}
+.faq-a{font-size:14px;color:var(--ink-2);line-height:1.7;padding:0 20px 18px;display:none}
+.faq-item.open .faq-a{display:block}
+.faq-item.open .faq-q-ico{transform:rotate(45deg)}
+
 </style>
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-CWV8G7JGPC"></script>
@@ -383,6 +452,28 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.06);padding
   </div>
 </section>
 
+
+<!-- SOCIAL PROOF -->
+<section class="social-proof fade-up">
+  <div class="sp-inner">
+    <div class="sp-stat">
+      <div class="sp-num">139<span>+</span></div>
+      <div class="sp-desc" data-i18n="sp-desc">tasks managed in one account</div>
+      <div style="margin-top:16px;font-size:12px;color:var(--ink-3)" data-i18n="sp-grow">Growing every week</div>
+    </div>
+    <div class="sp-quote">
+      <p class="sp-quote-text" data-i18n="sp-quote">"I run a real estate development, a car dealership, and multiple investment projects. jazzdoit is the only tool where I actually see my whole day — and the WhatsApp follow-up alone saves me 30 minutes every morning."</p>
+      <div class="sp-quote-author">
+        <div class="sp-avatar">MG</div>
+        <div>
+          <div class="sp-author-name">Mauricio Gutiérrez</div>
+          <div class="sp-author-role" data-i18n="sp-role">CEO, GVC Capital · Valledupar, Colombia</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- FEATURES -->
 <section class="features" id="features">
   <div class="features-inner">
@@ -407,6 +498,45 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.06);padding
         <p data-i18n="f3-desc">Wake up to your day, already organized. jazzdoit sends your agenda every morning before you open the app.</p>
       </div>
     </div>
+  </div>
+</section>
+
+
+<!-- DEMO ANIMADO -->
+<section class="demo" id="demo">
+  <div class="demo-inner fade-up">
+    <span class="sec-label" data-i18n="demo-label">See it in action</span>
+    <h2 class="sec-title" style="max-width:440px;margin:0 auto" data-i18n="demo-title">Create. Complete.<br>Follow up. Repeat.</h2>
+    <div class="demo-phone">
+      <div class="demo-screen">
+        <div class="demo-topbar">
+          <div class="demo-topbar-title">jazzdoit · My day</div>
+        </div>
+        <div class="demo-content">
+          <div class="demo-task" id="dt1">
+            <div class="demo-circle checked" id="dc1"></div>
+            <div class="demo-task-text struck" data-i18n="demo-t1">Review Q2 report</div>
+          </div>
+          <div class="demo-task completing" id="dt2">
+            <div class="demo-circle" id="dc2"></div>
+            <div class="demo-task-text" id="dtt2" data-i18n="demo-t2">Call with supplier</div>
+          </div>
+          <div class="demo-task" id="dt3">
+            <div class="demo-circle" id="dc3"></div>
+            <div class="demo-task-text" data-i18n="demo-t3">Send contract to Harlan</div>
+          </div>
+          <div class="demo-confetti" id="demo-confetti">🎉</div>
+          <div class="demo-wa" id="demo-wa">
+            <div class="demo-wa-header">
+              <div class="demo-wa-ico">💬</div>
+              <div class="demo-wa-label">WhatsApp · Harlan</div>
+            </div>
+            <span data-i18n="demo-wa-msg">Hi Harlan. Pending: • Send contract • Confirm delivery</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p style="margin-top:20px;font-size:13px;color:var(--ink-3)" data-i18n="demo-note">The WhatsApp follow-up message is generated automatically from your pending tasks.</p>
   </div>
 </section>
 
@@ -456,10 +586,88 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.06);padding
   </div>
 </section>
 
+
+<!-- WHY JAZZDOIT -->
+<section class="why" id="why">
+  <div class="why-inner">
+    <div class="why-text fade-up">
+      <span class="sec-label" data-i18n="why-label">Why jazzdoit</span>
+      <h2 class="sec-title" data-i18n-h="why-title">Not just another<br>task app.</h2>
+      <p data-i18n="why-p1">Most task apps are built for <span class="highlight">personal productivity</span>. jazzdoit is built for people who <span class="highlight">manage others</span> — delegating, following up, making sure things actually happen.</p>
+      <p data-i18n="why-p2">The WhatsApp follow-up is the feature no one else has. One tap generates a message with all pending items for a person — ready to send, no typing.</p>
+    </div>
+    <div class="why-card fade-up delay-1">
+      <div class="why-item">
+        <div class="why-item-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        <div>
+          <div class="why-item-title" data-i18n="why-f1">WhatsApp follow-up in 1 tap</div>
+          <div class="why-item-desc" data-i18n="why-f1d">Generate a ready-to-send message with all pending tasks per person.</div>
+          <div class="why-vs"><span>vs Todoist</span><span>vs Things</span><span>vs Notion</span></div>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-item-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+        <div>
+          <div class="why-item-title" data-i18n="why-f2">Daily email before you wake up</div>
+          <div class="why-item-desc" data-i18n="why-f2d">Your agenda in your inbox every morning. No app needed to start the day.</div>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-item-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></div>
+        <div>
+          <div class="why-item-title" data-i18n="why-f3">Completely free, no limits</div>
+          <div class="why-item-desc" data-i18n="why-f3d">Unlimited tasks, projects, and team members. No premium tier, no credit card.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- BETA -->
 <div class="beta-strip">
   <p data-i18n-h="beta"><strong>🚧 In active development.</strong> jazzdoit is live and fully usable right now. New features ship regularly — <a href="https://app.jazzdoit.co" target="_blank">join early</a> and help shape what comes next.</p>
 </div>
+
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="faq-inner">
+    <div class="faq-head fade-up">
+      <span class="sec-label" data-i18n="faq-label">FAQ</span>
+      <h2 class="sec-title" style="max-width:400px;margin:0 auto" data-i18n="faq-title">Quick answers</h2>
+    </div>
+    <div class="faq-list fade-up delay-1">
+      <div class="faq-item open">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <span data-i18n="faq-q1">Is it really completely free?</span>
+          <span class="faq-q-ico">+</span>
+        </div>
+        <div class="faq-a" data-i18n="faq-a1">Yes. jazzdoit is completely free — unlimited tasks, unlimited projects, all features included. No credit card, no hidden limits, no "premium" tier. We may introduce optional paid features in the future, but your current usage will never be cut off.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <span data-i18n="faq-q2">Is my data secure?</span>
+          <span class="faq-q-ico">+</span>
+        </div>
+        <div class="faq-a" data-i18n="faq-a2">Yes. Each account is completely isolated — only you can see your tasks. We use row-level security (RLS) so even our own database queries can't read your data without your session. Your data is encrypted at rest and in transit.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <span data-i18n="faq-q3">Does it work without internet?</span>
+          <span class="faq-q-ico">+</span>
+        </div>
+        <div class="faq-a" data-i18n="faq-a3">Yes. jazzdoit is a PWA (Progressive Web App) that works offline. Your tasks are saved locally and sync automatically when you reconnect. Install it on your phone and it works like a native app — no internet required to view or edit your tasks.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <span data-i18n="faq-q4">Do I need to download anything?</span>
+          <span class="faq-q-ico">+</span>
+        </div>
+        <div class="faq-a" data-i18n="faq-a4">No download needed to use jazzdoit — it runs in any browser. But you can install it on your phone like a native app: on iPhone, tap Share → Add to Home Screen. On Android, tap the install icon in Chrome. It's instant and takes up almost no space.</div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- CTA FINAL -->
 <section class="cta-final">
@@ -522,6 +730,37 @@ en:{
   'cta-h2':'Start today.<br><em>Thank yourself tomorrow.</em>',
   'cta-p':'Create your account in seconds. No setup, no friction.',
   'cta-btn':'Create free account →','cta-signup':'Create account','cta-login':'Sign in',
+  'sp-desc':'tasks managed in one account',
+  'sp-grow':'Growing every week',
+  'sp-quote':'"I run a real estate development, a car dealership, and multiple investment projects. jazzdoit is the only tool where I actually see my whole day — and the WhatsApp follow-up alone saves me 30 minutes every morning."',
+  'sp-role':'CEO, GVC Capital · Valledupar, Colombia',
+  'demo-label':'See it in action',
+  'demo-title':'Create. Complete.<br>Follow up. Repeat.',
+  'demo-t1':'Review Q2 report',
+  'demo-t2':'Call with supplier',
+  'demo-t3':'Send contract to Harlan',
+  'demo-wa-msg':'Hi Harlan. Pending: • Send contract • Confirm delivery',
+  'demo-note':'The WhatsApp follow-up message is generated automatically from your pending tasks.',
+  'why-label':'Why jazzdoit',
+  'why-title':'Not just another<br>task app.',
+  'why-p1':'Most task apps are built for personal productivity. jazzdoit is built for people who manage others — delegating, following up, making sure things actually happen.',
+  'why-p2':'The WhatsApp follow-up is the feature no one else has. One tap generates a message with all pending items for a person — ready to send, no typing.',
+  'why-f1':'WhatsApp follow-up in 1 tap',
+  'why-f1d':'Generate a ready-to-send message with all pending tasks per person.',
+  'why-f2':'Daily email before you wake up',
+  'why-f2d':'Your agenda in your inbox every morning. No app needed to start the day.',
+  'why-f3':'Completely free, no limits',
+  'why-f3d':'Unlimited tasks, projects, and team members. No premium tier, no credit card.',
+  'faq-label':'FAQ',
+  'faq-title':'Quick answers',
+  'faq-q1':'Is it really completely free?',
+  'faq-a1':'Yes. jazzdoit is completely free — unlimited tasks, unlimited projects, all features included. No credit card, no hidden limits, no "premium" tier.',
+  'faq-q2':'Is my data secure?',
+  'faq-a2':'Yes. Each account is completely isolated — only you can see your tasks. We use row-level security so even our own database queries can't read your data without your session.',
+  'faq-q3':'Does it work without internet?',
+  'faq-a3':'Yes. jazzdoit works offline. Your tasks are saved locally and sync automatically when you reconnect.',
+  'faq-q4':'Do I need to download anything?',
+  'faq-a4':'No download needed. It runs in any browser. But you can install it on your phone: on iPhone tap Share → Add to Home Screen. On Android tap the install icon in Chrome.',
   'footer-by':'A product by','nav-cta':'Sign up','nav-login':'Sign in',
   title:'jazzdoit — Get it done!','html-lang':'en',
 },
@@ -554,6 +793,37 @@ es:{
   'cta-h2':'Empieza hoy.<br><em>Mañana te lo agradecerás.</em>',
   'cta-p':'Crea tu cuenta en segundos. Sin configuraciones, sin complicaciones.',
   'cta-btn':'Crear cuenta →','cta-signup':'Crear cuenta','cta-login':'Iniciar sesión',
+  'sp-desc':'tareas gestionadas en una sola cuenta',
+  'sp-grow':'Creciendo cada semana',
+  'sp-quote':'"Manejo un desarrollo inmobiliario, una concesionaria y múltiples proyectos de inversión. jazzdoit es la única herramienta donde realmente veo mi día completo — y el seguimiento por WhatsApp solo me ahorra 30 minutos cada mañana."',
+  'sp-role':'CEO, GVC Capital · Valledupar, Colombia',
+  'demo-label':'Míralo en acción',
+  'demo-title':'Crea. Completa.<br>Dale seguimiento. Repite.',
+  'demo-t1':'Revisar informe Q2',
+  'demo-t2':'Llamada con proveedor',
+  'demo-t3':'Enviar contrato a Harlan',
+  'demo-wa-msg':'Hola Harlan. Pendientes: • Enviar contrato • Confirmar entrega',
+  'demo-note':'El mensaje de seguimiento de WhatsApp se genera automáticamente desde tus tareas pendientes.',
+  'why-label':'Por qué jazzdoit',
+  'why-title':'No es otra app<br>de tareas más.',
+  'why-p1':'La mayoría de apps de tareas son para productividad personal. jazzdoit está hecha para quien gestiona a otros — delegar, dar seguimiento, asegurarse de que las cosas pasen.',
+  'why-p2':'El seguimiento por WhatsApp es el feature que nadie más tiene. Un toque genera un mensaje con todos los pendientes de una persona — listo para enviar, sin escribir nada.',
+  'why-f1':'Seguimiento por WhatsApp en 1 toque',
+  'why-f1d':'Genera un mensaje listo para enviar con todas las tareas pendientes de una persona.',
+  'why-f2':'Correo diario antes de que despiertes',
+  'why-f2d':'Tu agenda en el correo cada mañana. No necesitas abrir la app para empezar el día.',
+  'why-f3':'Completamente gratis, sin límites',
+  'why-f3d':'Tareas, proyectos y equipo ilimitados. Sin nivel premium, sin tarjeta de crédito.',
+  'faq-label':'Preguntas frecuentes',
+  'faq-title':'Respuestas rápidas',
+  'faq-q1':'¿Es realmente completamente gratis?',
+  'faq-a1':'Sí. jazzdoit es completamente gratis — tareas ilimitadas, proyectos ilimitados, todas las funciones incluidas. Sin tarjeta de crédito, sin límites ocultos, sin nivel "premium".',
+  'faq-q2':'¿Mis datos están seguros?',
+  'faq-a2':'Sí. Cada cuenta está completamente aislada — solo tú puedes ver tus tareas. Usamos seguridad por fila (RLS) para que ni nuestras propias consultas puedan leer tus datos sin tu sesión.',
+  'faq-q3':'¿Funciona sin internet?',
+  'faq-a3':'Sí. jazzdoit funciona sin conexión. Tus tareas se guardan localmente y se sincronizan automáticamente cuando te reconectas.',
+  'faq-q4':'¿Necesito descargar algo?',
+  'faq-a4':'No se necesita descargar nada. Funciona en cualquier navegador. Pero puedes instalarlo en tu celular: en iPhone toca Compartir → Agregar a inicio. En Android toca el ícono de instalar en Chrome.',
   'footer-by':'Un producto de','nav-cta':'Registrarse','nav-login':'Iniciar sesión',
   title:'jazzdoit — ¡Get it done!','html-lang':'es',
 }};
@@ -574,6 +844,19 @@ function setLang(l){
 }
 try{LANG=localStorage.getItem('jd_ll')||detectLang();}catch(e){LANG=detectLang();}
 setLang(LANG);
+
+
+// ── Demo animation ──
+(function(){
+  var step=0;
+  var steps=[
+    function(){var dc=document.getElementById('dc2');var dt=document.getElementById('dt2');if(dc&&dt){dc.classList.add('checked');document.getElementById('dtt2').classList.add('struck');dt.classList.add('done');var cf=document.getElementById('demo-confetti');if(cf)cf.classList.add('show');}},
+    function(){var wa=document.getElementById('demo-wa');if(wa)wa.classList.add('show');},
+    function(){var wa=document.getElementById('demo-wa');if(wa)wa.classList.remove('show');var dc=document.getElementById('dc2');var dt=document.getElementById('dt2');var cf=document.getElementById('demo-confetti');if(dc){dc.classList.remove('checked');}if(dt){dt.classList.remove('done');dt.classList.add('completing');}if(document.getElementById('dtt2'))document.getElementById('dtt2').classList.remove('struck');if(cf)cf.classList.remove('show');}
+  ];
+  function runDemo(){steps[step%steps.length]();step++;setTimeout(runDemo,step%3===0?3000:2000);}
+  setTimeout(runDemo,2500);
+})();
 
 // ── Fade-in on scroll ──────────────────────────────────────────────────────
 const observer=new IntersectionObserver(entries=>{
